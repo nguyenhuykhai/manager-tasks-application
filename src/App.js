@@ -11,6 +11,13 @@ import "antd/dist/antd.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
 
+// Import Custome Function
+import withAuthProtectionStudent from "./interceptor/isAuthProtectionStudent";
+import withAuthProtection from "./interceptor/isAuthenticated";
+
+// const ProtectedComponent = withAuthProtection();
+// const ProtectedStudentComponent = withAuthProtectionStudent();
+
 function App() {
   return (
     <div className="App">

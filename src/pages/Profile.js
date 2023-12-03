@@ -1,6 +1,9 @@
+// Library imports
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-import { useState } from "react";
-
+// Antd imports
 import {
   Row,
   Col,
@@ -33,9 +36,13 @@ import project1 from "../assets/images/home-decor-1.jpeg";
 import project2 from "../assets/images/home-decor-2.jpeg";
 import project3 from "../assets/images/home-decor-3.jpeg";
 
+// Import variables API
+import { GET_STUDENT, GET_STUDENT_BY_ID } from "../assets/api";
+
+
 function Profile() {
   const [imageURL, setImageURL] = useState(false);
-  const [, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const getBase64 = (img, callback) => {
     const reader = new FileReader();
@@ -147,6 +154,39 @@ function Profile() {
     },
   ];
 
+  const [dataStudent, setDataStudent] = useState();
+  const [studentId, setStudentId] = useState("101");
+
+  // Interactive with API
+
+  // Get API Student info 
+  useEffect(() => {
+    // if (!localStorage.getItem("isLogin")) {
+    //   toast({
+    //     status: "error",
+    //     position: "top",
+    //     duration: "5000",
+    //     isClosable: true,
+    //     title: "Đăng nhập",
+    //     description: "Bạn cần phải đăng nhập tài khoản trước khi vào",
+    //   });
+    //   return history.push("/auth/signin");
+    // }
+    const getStudentById = async () => {
+      try {
+        const { url, options } = GET_STUDENT_BY_ID(studentId);
+        const response = await fetch(url, options);
+        const json = await response.json();
+        setDataStudent(json[0]);
+      } catch (error) {
+        console.log("ERROR: ", error);
+      }
+    };
+    getStudentById();
+  }, []);
+
+  if (!dataStudent) return <div>Loading...</div>
+
   return (
     <>
       <div
@@ -161,11 +201,11 @@ function Profile() {
           <Row justify="space-between" align="middle" gutter={[24, 0]}>
             <Col span={24} md={12} className="col-info">
               <Avatar.Group>
-                <Avatar size={74} shape="square" src={profilavatar} />
+                <Avatar size={74} shape="square" src={dataStudent?.picture} />
 
                 <div className="avatar-info">
-                  <h4 className="font-semibold m-0">Sarah Jacob</h4>
-                  <p>CEO / Co-Founder</p>
+                  <h4 className="font-semibold m-0">{dataStudent?.student_name}</h4>
+                  <p>{dataStudent?.about}</p>
                 </div>
               </Avatar.Group>
             </Col>
@@ -193,7 +233,7 @@ function Profile() {
           <Card
             bordered={false}
             className="header-solid h-full"
-            title={<h6 className="font-semibold m-0">Platform Settings</h6>}
+            title={<h6 className="font-semibold m-0">Cài đặt</h6>}
           >
             <ul className="list settings-list">
               <li>
@@ -235,37 +275,31 @@ function Profile() {
         <Col span={24} md={8} className="mb-24">
           <Card
             bordered={false}
-            title={<h6 className="font-semibold m-0">Profile Information</h6>}
+            title={<h6 className="font-semibold m-0">Thông tin cá nhân</h6>}
             className="header-solid h-full card-profile-information"
             extra={<Button type="link">{pencil}</Button>}
             bodyStyle={{ paddingTop: 0, paddingBottom: 16 }}
           >
             <p className="text-dark">
               {" "}
-              Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer
-              is no. If two equally difficult paths, choose the one more painful
-              in the short term (pain avoidance is creating an illusion of
-              equality).{" "}
+              {dataStudent?.about}{" "}
             </p>
             <hr className="my-25" />
-            <Descriptions title="Oliver Liam">
+            <Descriptions title="Chi tiết">
               <Descriptions.Item label="Full Name" span={3}>
-                Sarah Emily Jacob
+              {dataStudent?.student_name}
               </Descriptions.Item>
-              <Descriptions.Item label="Mobile" span={3}>
-                (44) 123 1234 123
+              <Descriptions.Item label="GitHub" span={3}>
+              {dataStudent?.github}
               </Descriptions.Item>
               <Descriptions.Item label="Email" span={3}>
-                sarahjacob@mail.com
-              </Descriptions.Item>
-              <Descriptions.Item label="Location" span={3}>
-                USA
+              {dataStudent?.email}
               </Descriptions.Item>
               <Descriptions.Item label="Social" span={3}>
                 <a href="#pablo" className="mx-5 px-5">
                   {<TwitterOutlined />}
                 </a>
-                <a href="#pablo" className="mx-5 px-5">
+                <a href={dataStudent?.link_facebook} className="mx-5 px-5">
                   {<FacebookOutlined style={{ color: "#344e86" }} />}
                 </a>
                 <a href="#pablo" className="mx-5 px-5">
@@ -278,7 +312,7 @@ function Profile() {
         <Col span={24} md={8} className="mb-24">
           <Card
             bordered={false}
-            title={<h6 className="font-semibold m-0">Conversations</h6>}
+            title={<h6 className="font-semibold m-0">Cuộc trò chuyện</h6>}
             className="header-solid h-full"
             bodyStyle={{ paddingTop: 0, paddingBottom: 16 }}
           >
