@@ -1,4 +1,4 @@
-const API_URL = "https://656c0295e1e03bfd572df41c.mockapi.io/";
+const API_URL = "http://localhost:9999/";
 
 // API FOR TABLE STUDENT 
 export function GET_STUDENT() {
@@ -12,9 +12,19 @@ export function GET_STUDENT() {
 
 export function GET_STUDENT_BY_ID(id) {
   return {
-    url: `${API_URL}Student?student_id=${id}`,
+    url: `${API_URL}Student/${id}`,
     options: {
       method: "GET",
+    },
+  };
+}
+
+export function GET_STUDENT_BY_EMAIl(email) {
+  return {
+    url: `${API_URL}Student?email=${email}`,
+    options: {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
     },
   };
 }

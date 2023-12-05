@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useAuthContext } from "./AuthContext"
 
 const UserContext = createContext();
 
@@ -15,20 +16,16 @@ export const UserContextProvider = ({ children }) => {
 
   const login = (username, role) => {
     // Simulate the login process and store user data in the context
-    if (role !== 'Admin' && role !== 'Student') {
+    if (role !== 'Lecturer' && role !== 'Student') {
       throw new Error('Invalid role');
     }
 
     // Example: Fetch user data from a server based on username and role
     // For simplicity, we're using static data here
-    const userData = {
-      username,
-      role,
-      data: role === 'Admin' ? { adminKey: 'adminValue' } : { studentKey: 'studentValue' },
-    };
+    const userData = { username, role };
 
     // Store the token in localStorage
-    const token = 'exampleToken'; // Replace with the actual token from your authentication process
+    const token = 'exampleToken';
     localStorage.setItem('authToken', token);
 
     // Set the user data in the context
@@ -44,7 +41,7 @@ export const UserContextProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, login, logout,  }}>
       {children}
     </UserContext.Provider>
   );

@@ -1,0 +1,231 @@
+{
+    "student": [
+        {
+            "student_name": "Nguyễn Huy Khải",
+            "class_id": 1,
+            "group_id": 1,
+            "score": 90,
+            "link_facebook": "https://www.facebook.com/huykhai.Pi/",
+            "email": "nguyenhuykhaipch94@gmail.com",
+            "github": "https://github.com/nguyenhuykhai",
+            "skills": "Front-end React, Angular. Back-end NodeJS, Java Servlet & JSP",
+            "about": "A passionate web developer from VietNam.",
+            "picture": "https://avatars.githubusercontent.com/u/66985115?s=400&u=d23c5b8f3934e1e7fd0c7b61f9cd16b94a51f071&v=4",
+            "status": true,
+            "is_leader": true,
+            "id": "101",
+            "pending": "",
+            "password": "12345",
+            "role": "Student",
+            "token": "1234567890"
+        },
+        {
+            "student_name": "Hiếu TV",
+            "class_id": 1,
+            "group_id": 1,
+            "score": 70,
+            "link_facebook": "https://scontent.fsgn2-8.fna.fbcdn.net/v/t39.30808-6/342764149_1890690684599722_1129199332142690555_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=dWUgWL2KRf4AX_ss_ij&_nc_ht=scontent.fsgn2-8.fna&oh=00_AfBhMmznGqPRb8v1jZkfoUSEzMC3x3rRPAjvgoFXxNIQ4Q&oe=65739221",
+            "email": "hieutv@gmail.com",
+            "github": "https://github.com/",
+            "skills": "Front-end React, Angular, VueJS.",
+            "about": "A passionate web developer from VietNam.",
+            "picture": "https://avatars.githubusercontent.com/u/66985115?s=400&u=d23c5b8f3934e1e7fd0c7b61f9cd16b94a51f071&v=4",
+            "status": true,
+            "is_leader": false,
+            "id": "102",
+            "pending": "",
+            "password": "12345",
+            "role": "Student",
+            "token": "1234567890"
+        },
+        {
+            "student_name": "Đinh Gia Bảo",
+            "class_id": 1,
+            "group_id": 1,
+            "score": 80,
+            "link_facebook": "https://www.facebook.com/media/set/?set=a.1556724354582064&type=3",
+            "email": "dinhgiabao@gmail.com",
+            "github": "https://github.com/RankillerDY",
+            "skills": "Front-end React. Back-end With Java and Spring Boot",
+            "about": "A passionate web developer from VietNam.",
+            "picture": "https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-1/344363561_1269430363660340_8170588377395495271_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=5740b7&_nc_ohc=7xlvsTYKP1gAX_G3zVI&_nc_ht=scontent.fsgn2-9.fna&oh=00_AfBtqR0MSV-TnVcXeddd8Wdq6eUg5IwT_b0ibbAXPVS1lg&oe=6572B33A",
+            "status": true,
+            "is_leader": false,
+            "id": "103",
+            "pending": "",
+            "password": "12345",
+            "role": "Student",
+            "token": "1234567890"
+        },
+        {
+            "student_name": "Nguyễn Bỉnh Khiêm",
+            "class_id": 1,
+            "group_id": 1,
+            "score": 80,
+            "link_facebook": "https://www.facebook.com/media/set/?set=a.1556724354582064&type=3",
+            "email": "dinhgiabao@gmail.com",
+            "github": "https://github.com/RankillerDY",
+            "skills": "Front-end React. Back-end With Java and Spring Boot",
+            "about": "A passionate web developer from VietNam.",
+            "picture": "https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-1/344363561_1269430363660340_8170588377395495271_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=5740b7&_nc_ohc=7xlvsTYKP1gAX_G3zVI&_nc_ht=scontent.fsgn2-9.fna&oh=00_AfBtqR0MSV-TnVcXeddd8Wdq6eUg5IwT_b0ibbAXPVS1lg&oe=6572B33A",
+            "status": true,
+            "is_leader": false,
+            "id": "104",
+            "pending": "",
+            "password": "12345",
+            "role": "Student",
+            "token": "1234567890"
+        },
+        {
+            "student_name": "Đinh Gia Lâm",
+            "class_id": 1,
+            "group_id": 1,
+            "score": 85,
+            "link_facebook": "https://www.facebook.com/media/set/?set=a.1556724354582064&type=3",
+            "email": "dinhgiabao@gmail.com",
+            "github": "https://github.com/RankillerDY",
+            "skills": "Front-end React. Back-end With Java and Spring Boot",
+            "about": "A passionate web developer from VietNam.",
+            "picture": "https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-1/344363561_1269430363660340_8170588377395495271_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=5740b7&_nc_ohc=7xlvsTYKP1gAX_G3zVI&_nc_ht=scontent.fsgn2-9.fna&oh=00_AfBtqR0MSV-TnVcXeddd8Wdq6eUg5IwT_b0ibbAXPVS1lg&oe=6572B33A",
+            "status": true,
+            "is_leader": false,
+            "id": "105",
+            "pending": "",
+            "password": "12345",
+            "role": "Student",
+            "token": "1234567890"
+        },
+        {
+            "student_name": "Đinh Văn Khánh",
+            "class_id": 1,
+            "group_id": 1,
+            "score": 95,
+            "link_facebook": "https://www.facebook.com/media/set/?set=a.1556724354582064&type=3",
+            "email": "dinhgiabao@gmail.com",
+            "github": "https://github.com/RankillerDY",
+            "skills": "Front-end React. Back-end With Java and Spring Boot",
+            "about": "A passionate web developer from VietNam.",
+            "picture": "https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-1/344363561_1269430363660340_8170588377395495271_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=5740b7&_nc_ohc=7xlvsTYKP1gAX_G3zVI&_nc_ht=scontent.fsgn2-9.fna&oh=00_AfBtqR0MSV-TnVcXeddd8Wdq6eUg5IwT_b0ibbAXPVS1lg&oe=6572B33A",
+            "status": true,
+            "is_leader": false,
+            "id": "106",
+            "pending": "",
+            "password": "12345",
+            "role": "Student",
+            "token": "1234567890"
+        }
+    ],
+    "lecturers": [
+        {
+          "status": true,
+          "picture": "https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/270961679_10159870536636108_2642967668131478092_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=W2gY1CWNpD4AX8X-zbq&_nc_oc=AQnYo9iDDmgzAcD3tRoXbcRrOFT9VuX6_Y_DrVrHcnSuc7SAdwHqLRT2dBcRZghx0ZkxnPF2knAfVINofbkLWo4P&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfB7mZV1D3jaUPLkVfQ3gt72FXYUdoYEgAtIylGRzFtAdg&oe=65727257",
+          "email": "nguyenthehoang@gmail.com",
+          "name": "Nguyễn Thế Hoàng",
+          "id": "104",
+          "token": "1234567890"
+        },
+        {
+            "status": true,
+            "picture": "https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/270961679_10159870536636108_2642967668131478092_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=W2gY1CWNpD4AX8X-zbq&_nc_oc=AQnYo9iDDmgzAcD3tRoXbcRrOFT9VuX6_Y_DrVrHcnSuc7SAdwHqLRT2dBcRZghx0ZkxnPF2knAfVINofbkLWo4P&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfB7mZV1D3jaUPLkVfQ3gt72FXYUdoYEgAtIylGRzFtAdg&oe=65727257",
+            "email": "nguyenvana@gmail.com",
+            "name": "Nguyễn Văn A",
+            "id": "105",
+            "token": "1234567890"
+        },
+        {
+            "status": true,
+            "picture": "https://scontent.fsgn2-7.fna.fbcdn.net/v/t39.30808-6/270961679_10159870536636108_2642967668131478092_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=W2gY1CWNpD4AX8X-zbq&_nc_oc=AQnYo9iDDmgzAcD3tRoXbcRrOFT9VuX6_Y_DrVrHcnSuc7SAdwHqLRT2dBcRZghx0ZkxnPF2knAfVINofbkLWo4P&_nc_ht=scontent.fsgn2-7.fna&oh=00_AfB7mZV1D3jaUPLkVfQ3gt72FXYUdoYEgAtIylGRzFtAdg&oe=65727257",
+            "email": "huynhvanb@gmail.com",
+            "name": "Huỳnh Văn B",
+            "id": "106",
+            "token": "1234567890"
+        }
+    ],
+    "class": [
+        {
+            "id": "1",
+            "lecturer_id": "104",
+            "semester_id": "1",
+            "class_name": "PRJ391",
+            "status": true
+        },
+        {
+            "id": "2",
+            "lecturer_id": "105",
+            "semester_id": "1",
+            "class_name": "LAB211",
+            "status": true
+        },
+        {
+            "id": "3",
+            "lecturer_id": "105",
+            "semester_id": "1",
+            "class_name": "LAB211",
+            "status": true
+        }
+    ],
+    "group": [
+        {
+            "id": "1",
+            "class_id": "1",
+            "project_id": "1",
+            "score": 90,
+            "status": true,
+            "group_name": "Group 1"
+        },
+        {
+            "id": "2",
+            "class_id": "1",
+            "project_id": "1",
+            "score": 80,
+            "status": true,
+            "group_name": "Group 2"
+        },
+        {
+            "id": "3",
+            "class_id": "1",
+            "project_id": "1",
+            "score": 70,
+            "status": true,
+            "group_name": "Group 3"
+        },
+        {
+            "id": "4",
+            "class_id": "1",
+            "project_id": "1",
+            "score": 100,
+            "status": true,
+            "group_name": "Group 4"
+        },
+        {
+            "id": "5",
+            "class_id": "1",
+            "project_id": "1",
+            "score": 60,
+            "status": true,
+            "group_name": "Group 5"
+        }
+    ],
+    "project": [
+        {
+            "lecturer_id": "104",
+            "id": "1",
+            "status": true,
+            "project_name": "Manhattan",
+            "context": "The atomic boom",
+            "functional_requirements": "The explosion need to be 250ft tall",
+            "non_functional_requirements": "Destroy everything",
+            "problems": "Need more time to research about the context"
+        },
+        {
+            "lecturer_id": "105",
+            "id": "2",
+            "status": true,
+            "project_name": "Taskify",
+            "context": "Help manage task",
+            "functional_requirements": "Able to settle things",
+            "non_functional_requirements": "High performance",
+            "problems": "Need more time to research about socket"
+        }
+    ]
+}

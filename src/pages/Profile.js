@@ -37,7 +37,7 @@ import project2 from "../assets/images/home-decor-2.jpeg";
 import project3 from "../assets/images/home-decor-3.jpeg";
 
 // Import variables API
-import { GET_STUDENT, GET_STUDENT_BY_ID } from "../assets/api";
+import { GET_STUDENT, GET_STUDENT_BY_ID, GET_STUDENT_BY_EMAIl } from "../assets/api";
 
 
 function Profile() {
@@ -177,7 +177,7 @@ function Profile() {
         const { url, options } = GET_STUDENT_BY_ID(studentId);
         const response = await fetch(url, options);
         const json = await response.json();
-        setDataStudent(json[0]);
+        setDataStudent(json);
       } catch (error) {
         console.log("ERROR: ", error);
       }
@@ -282,7 +282,7 @@ function Profile() {
           >
             <p className="text-dark">
               {" "}
-              {dataStudent?.about}{" "}
+              {dataStudent?.skills}{" "}
             </p>
             <hr className="my-25" />
             <Descriptions title="Chi tiết">
@@ -312,7 +312,7 @@ function Profile() {
         <Col span={24} md={8} className="mb-24">
           <Card
             bordered={false}
-            title={<h6 className="font-semibold m-0">Cuộc trò chuyện</h6>}
+            title={<h6 className="font-semibold m-0">Danh sách thành viên</h6>}
             className="header-solid h-full"
             bodyStyle={{ paddingTop: 0, paddingBottom: 16 }}
           >
