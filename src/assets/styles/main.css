@@ -2594,7 +2594,7 @@ section.ant-layout.layout-content .ant-layout-content.content-ant {
   border-radius: 12px;
   box-shadow: 0 20px 27px rgb(0 0 0 / 5%);
   background-size: cover;
-  background-position: 50%;
+  /* background-position: 50%; */
 }
 
 section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile

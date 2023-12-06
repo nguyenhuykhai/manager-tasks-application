@@ -12,7 +12,7 @@ export function GET_STUDENT() {
 
 export function GET_STUDENT_BY_ID(id) {
   return {
-    url: `${API_URL}Student/${id}`,
+    url: `${API_URL}student/${id}`,
     options: {
       method: "GET",
     },
@@ -21,7 +21,27 @@ export function GET_STUDENT_BY_ID(id) {
 
 export function GET_STUDENT_BY_EMAIl(email) {
   return {
-    url: `${API_URL}Student?email=${email}`,
+    url: `${API_URL}student?email=${email}`,
+    options: {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    },
+  };
+}
+
+export function GET_LECTURER_BY_EMAIl(email) {
+  return {
+    url: `${API_URL}lecturers?email=${email}`,
+    options: {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'}
+    },
+  };
+}
+
+export function GET_GROUP_INFO_BY_ID(id) {
+  return {
+    url: `${API_URL}groupInfo/${id}`,
     options: {
       method: 'GET',
       headers: {'Content-Type': 'application/json'}

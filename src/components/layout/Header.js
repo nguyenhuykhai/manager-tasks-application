@@ -1,6 +1,8 @@
 
 
 import { useState, useEffect } from "react";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { useLogout } from "../../hooks/useLogout";
 
 import {
   Row,
@@ -22,6 +24,7 @@ import {
   StarOutlined,
   TwitterOutlined,
   FacebookFilled,
+  UserOutlined
 } from "@ant-design/icons";
 
 import { NavLink, Link } from "react-router-dom";
@@ -252,6 +255,8 @@ function Header({
 
   const [visible, setVisible] = useState(false);
   const [sidenavType, setSidenavType] = useState("transparent");
+  const { user, dispatch } = useAuthContext()
+  const { logout } = useLogout();
 
   useEffect(() => window.scrollTo(0, 0));
 
@@ -295,7 +300,7 @@ function Header({
             </Dropdown>
           </Badge>
           <Button type="link" onClick={showDrawer}>
-            {logsetting}
+          <UserOutlined />
           </Button>
           <Button
             type="link"
@@ -315,13 +320,13 @@ function Header({
             <div layout="vertical">
               <div className="header-top">
                 <Title level={4}>
-                  Configurator
-                  <Text className="subtitle">See our dashboard options.</Text>
+                  {user?.name || user?.student_name}
+                  <Text className="subtitle">{user?.email}</Text>
                 </Title>
               </div>
 
               <div className="sidebar-color">
-                <Title level={5}>Sidebar Color</Title>
+                <Title level={5}>Đổi màu giao diện thanh điều hướng</Title>
                 <div className="theme-color mb-2">
                   <ButtonContainer>
                     <Button
@@ -359,8 +364,8 @@ function Header({
                 </div>
 
                 <div className="sidebarnav-color mb-2">
-                  <Title level={5}>Sidenav Type</Title>
-                  <Text>Choose between 2 different sidenav types.</Text>
+                  <Title level={5}>Đổ bóng thanh điều hướng</Title>
+                  <Text>Chọn loại đổ bóng</Text>
                   <ButtonContainer className="trans">
                     <Button
                       type={sidenavType === "transparent" ? "primary" : "white"}
@@ -369,7 +374,7 @@ function Header({
                         setSidenavType("transparent");
                       }}
                     >
-                      TRANSPARENT
+                      TRONG SUỐT
                     </Button>
                     <Button
                       type={sidenavType === "white" ? "primary" : "white"}
@@ -378,43 +383,24 @@ function Header({
                         setSidenavType("white");
                       }}
                     >
-                      WHITE
+                      TRẮNG
                     </Button>
                   </ButtonContainer>
                 </div>
                 <div className="fixed-nav mb-2">
-                  <Title level={5}>Navbar Fixed </Title>
+                  <Title level={5}>Thanh điều hướng bất biến</Title>
                   <Switch onChange={(e) => handleFixedNavbar(e)} />
                 </div>
                 <div className="ant-docment">
                   <ButtonContainer>
-                    <Button type="black" size="large">
-                      FREE DOWNLOAD
+                    <Button onClick={() => logout()} type="primary" size="medium">
+                      Đăng xuất
                     </Button>
-                    <Button size="large">VIEW DOCUMENTATION</Button>
-                  </ButtonContainer>
-                </div>
-                <div className="viewstar">
-                  <a href="#pablo">{<StarOutlined />} Star</a>
-                  <a href="#pablo"> 190</a>
-                </div>
-
-                <div className="ant-thank">
-                  <Title level={5} className="mb-2">
-                    Thank you for sharing!
-                  </Title>
-                  <ButtonContainer className="social">
-                    <Button type="black">{<TwitterOutlined />}TWEET</Button>
-                    <Button type="black">{<FacebookFilled />}SHARE</Button>
                   </ButtonContainer>
                 </div>
               </div>
             </div>
           </Drawer>
-          <Link to="/sign-in" className="btn-sign-in">
-            {profile}
-            <span>Sign in</span>
-          </Link>
           <Input
             className="header-search"
             placeholder="Type here..."

@@ -4,15 +4,20 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
 //Import UseContext
-// import { UserContextProvider } from "./context/UserContext"
 import { AuthContextProvider } from "./context/AuthContext";
 import { AlertContextProvider } from "./context/AlertContext";
+import { ProjectContextProvider } from "./context/ProjectContext";
+import { GroupContextProvider } from "./context/GroupContext";
 
 ReactDOM.render(
   <BrowserRouter>
     <AlertContextProvider>
       <AuthContextProvider>
-        <App />
+        <ProjectContextProvider>
+          <GroupContextProvider>
+            <App />
+          </GroupContextProvider>
+        </ProjectContextProvider>
       </AuthContextProvider>
     </AlertContextProvider>
   </BrowserRouter>,

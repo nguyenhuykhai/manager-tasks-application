@@ -3,7 +3,7 @@ import { useAuthContext } from "./useAuthContext";
 import { useHistory } from "react-router-dom";
 
 // Import variables API
-import { GET_STUDENT_BY_EMAIl } from "../assets/api";
+import { GET_STUDENT_BY_EMAIl, GET_LECTURER_BY_EMAIl } from "../assets/api";
 
 // Import custome hooks
 import { useAlert } from "./useAlert";
@@ -61,7 +61,52 @@ export const useLogin = () => {
           // update the auth context
           dispatch({ type: "LOGIN", payload: json[0] });
           alert("success", "Đăng nhập thành công");
-          history.push("/profile");
+          switch (json[0]?.role) {
+            case "Student":
+              history.push("/profile");
+              break;
+            case "Lecturer":
+              history.push("/profile-lecturer");
+              break;
+            case "Admin":
+              break;  
+            default:
+              break;
+          }
+        } else {
+          fakeLogin2()
+        }
+        setIsLoading(false);
+      } catch (error) {
+        fakeLogin2()
+      }
+    };
+
+
+    const fakeLogin2 = async () => {
+      try {
+        const { url, options } = GET_LECTURER_BY_EMAIl(email);
+        const response = await fetch(url, options);
+        const json = await response.json();
+
+        const isAuthenticated = handleLogin(json[0]);
+
+        if (isAuthenticated) {
+          // update the auth context
+          dispatch({ type: "LOGIN", payload: json[0] });
+          alert("success", "Đăng nhập thành công");
+          switch (json[0]?.role) {
+            case "Student":
+              history.push("/profile");
+              break;
+            case "Lecturer":
+              history.push("/profile-lecturer");
+              break;
+            case "Admin":
+              break;  
+            default:
+              break;
+          }
         } else {
           console.log("ERROR: Invalid role");
           setError("Invalid role");
@@ -75,6 +120,7 @@ export const useLogin = () => {
         setError(error);
       }
     };
+
     fakeLogin();
   };
   return { login, isLoading, error };
@@ -87,12 +133,28 @@ const handleLogin = (data) => {
     return false;
   }
 
-  // Store the token in localStorage
-  const token = "exampleToken";
-  localStorage.setItem("token", data?.token);
-  localStorage.setItem("role", data?.role);
-  localStorage.setItem("email", data?.email);
-  localStorage.setItem("student_name", data?.student_name);
-  localStorage.setItem("is_leader", data?.is_leader);
+  switch (data?.role) {
+    case "Lecturer":
+      // Store the token in localStorage
+      localStorage.setItem("id", data?.id);
+      localStorage.setItem("token", data?.token);
+      localStorage.setItem("role", data?.role);
+      localStorage.setItem("email", data?.email);
+      localStorage.setItem("name", data?.name);
+      break;
+    case "Student":
+      // Store the token in localStorage
+      localStorage.setItem("id", data?.id);
+      localStorage.setItem("token", data?.token);
+      localStorage.setItem("role", data?.role);
+      localStorage.setItem("email", data?.email);
+      localStorage.setItem("name", data?.student_name);
+      localStorage.setItem("is_leader", data?.is_leader);
+      break;
+    case "Admin":
+      break;
+    default:
+      break;
+  }
   return true;
 };

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 // Antd imports
 import {
@@ -25,22 +26,22 @@ import {
   VerticalAlignTopOutlined,
 } from "@ant-design/icons";
 
-import BgProfile from "../assets/images/bg-profile.jpg";
-import profilavatar from "../assets/images/face-1.jpg";
-import convesionImg from "../assets/images/face-3.jpg";
-import convesionImg2 from "../assets/images/face-4.jpg";
-import convesionImg3 from "../assets/images/face-5.jpeg";
-import convesionImg4 from "../assets/images/face-6.jpeg";
-import convesionImg5 from "../assets/images/face-2.jpg";
-import project1 from "../assets/images/home-decor-1.jpeg";
-import project2 from "../assets/images/home-decor-2.jpeg";
-import project3 from "../assets/images/home-decor-3.jpeg";
+import BgProfile from "../../assets/images/bg-christmas.jpg";
+import profilavatar from "../../assets/images/face-1.jpg";
+import convesionImg from "../../assets/images/face-3.jpg";
+import convesionImg2 from "../../assets/images/face-4.jpg";
+import convesionImg3 from "../../assets/images/face-5.jpeg";
+import convesionImg4 from "../../assets/images/face-6.jpeg";
+import convesionImg5 from "../../assets/images/face-2.jpg";
+import project1 from "../../assets/images/home-decor-1.jpeg";
+import project2 from "../../assets/images/home-decor-2.jpeg";
+import project3 from "../../assets/images/home-decor-3.jpeg";
 
 // Import variables API
-import { GET_STUDENT, GET_STUDENT_BY_ID, GET_STUDENT_BY_EMAIl } from "../assets/api";
+import { GET_LECTURER_BY_EMAIl } from "../../assets/api";
 
 
-function Profile() {
+function ProfileLecturer() {
   const [imageURL, setImageURL] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -154,38 +155,8 @@ function Profile() {
     },
   ];
 
-  const [dataStudent, setDataStudent] = useState();
-  const [studentId, setStudentId] = useState("101");
-
-  // Interactive with API
-
-  // Get API Student info 
-  useEffect(() => {
-    // if (!localStorage.getItem("isLogin")) {
-    //   toast({
-    //     status: "error",
-    //     position: "top",
-    //     duration: "5000",
-    //     isClosable: true,
-    //     title: "Đăng nhập",
-    //     description: "Bạn cần phải đăng nhập tài khoản trước khi vào",
-    //   });
-    //   return history.push("/auth/signin");
-    // }
-    const getStudentById = async () => {
-      try {
-        const { url, options } = GET_STUDENT_BY_ID(studentId);
-        const response = await fetch(url, options);
-        const json = await response.json();
-        setDataStudent(json);
-      } catch (error) {
-        console.log("ERROR: ", error);
-      }
-    };
-    getStudentById();
-  }, []);
-
-  if (!dataStudent) return <div>Loading...</div>
+  const { user, dispatch } = useAuthContext()
+  if (!user?.name) return <div>Loading...</div>
 
   return (
     <>
@@ -201,11 +172,10 @@ function Profile() {
           <Row justify="space-between" align="middle" gutter={[24, 0]}>
             <Col span={24} md={12} className="col-info">
               <Avatar.Group>
-                <Avatar size={74} shape="square" src={dataStudent?.picture} />
+                <Avatar size={74} shape="square" src={user?.picture} />
 
                 <div className="avatar-info">
-                  <h4 className="font-semibold m-0">{dataStudent?.student_name}</h4>
-                  <p>{dataStudent?.about}</p>
+                  <h4 className="font-semibold m-0">{user?.name}</h4>
                 </div>
               </Avatar.Group>
             </Col>
@@ -282,29 +252,15 @@ function Profile() {
           >
             <p className="text-dark">
               {" "}
-              {dataStudent?.skills}{" "}
+              {user?.skills}{" "}
             </p>
             <hr className="my-25" />
             <Descriptions title="Chi tiết">
               <Descriptions.Item label="Full Name" span={3}>
-              {dataStudent?.student_name}
-              </Descriptions.Item>
-              <Descriptions.Item label="GitHub" span={3}>
-              {dataStudent?.github}
+              {user?.name}
               </Descriptions.Item>
               <Descriptions.Item label="Email" span={3}>
-              {dataStudent?.email}
-              </Descriptions.Item>
-              <Descriptions.Item label="Social" span={3}>
-                <a href="#pablo" className="mx-5 px-5">
-                  {<TwitterOutlined />}
-                </a>
-                <a href={dataStudent?.link_facebook} className="mx-5 px-5">
-                  {<FacebookOutlined style={{ color: "#344e86" }} />}
-                </a>
-                <a href="#pablo" className="mx-5 px-5">
-                  {<InstagramOutlined style={{ color: "#e1306c" }} />}
-                </a>
+              {user?.email}
               </Descriptions.Item>
             </Descriptions>
           </Card>
@@ -312,7 +268,7 @@ function Profile() {
         <Col span={24} md={8} className="mb-24">
           <Card
             bordered={false}
-            title={<h6 className="font-semibold m-0">Danh sách thành viên</h6>}
+            title={<h6 className="font-semibold m-0">Danh sách lớp</h6>}
             className="header-solid h-full"
             bodyStyle={{ paddingTop: 0, paddingBottom: 16 }}
           >
@@ -396,4 +352,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default ProfileLecturer;
