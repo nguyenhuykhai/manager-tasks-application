@@ -1,8 +1,8 @@
 
 
 import { useState, useEffect } from "react";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogout } from "../../hooks/useLogout";
+import { connect } from 'react-redux';
 
 import {
   Row,
@@ -250,13 +250,13 @@ function Header({
   handleSidenavColor,
   handleSidenavType,
   handleFixedNavbar,
+  user
 }) {
   const { Title, Text } = Typography;
 
   const [visible, setVisible] = useState(false);
   const [sidenavType, setSidenavType] = useState("transparent");
-  const { user, dispatch } = useAuthContext()
-  const { logout } = useLogout();
+  // const { logout } = useLogout();
 
   useEffect(() => window.scrollTo(0, 0));
 
@@ -393,7 +393,8 @@ function Header({
                 </div>
                 <div className="ant-docment">
                   <ButtonContainer>
-                    <Button onClick={() => logout()} type="primary" size="medium">
+                    {/* <Button onClick={() => logout()} type="primary" size="medium"> */}
+                    <Button type="primary" size="medium">
                       Đăng xuất
                     </Button>
                   </ButtonContainer>
@@ -412,4 +413,9 @@ function Header({
   );
 }
 
-export default Header;
+// Connect the App component to the Redux store
+const mapStateToProps = (state) => ({
+  user: state.authReducer?.user
+});
+
+export default connect(mapStateToProps)(Header);

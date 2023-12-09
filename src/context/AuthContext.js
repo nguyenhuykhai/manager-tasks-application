@@ -1,5 +1,6 @@
 import { createContext, useReducer, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
+import * as types from "../actions/actionTypes"
 
 // Import variables API
 import { GET_STUDENT_BY_EMAIl, GET_LECTURER_BY_EMAIl } from "../assets/api";
@@ -8,9 +9,9 @@ export const AuthContext = createContext()
 
 export const authReducer = (state, action) => {
     switch (action.type) {
-        case 'LOGIN':
+        case types.LOGIN_SUCCESS:
             return { user: action.payload }
-        case 'LOGOUT':
+        case types.LOGOUT:
             return { user: null }
         default:
             return state
@@ -48,7 +49,7 @@ export const AuthContextProvider = ({ children }) => {
             const response = await fetch(url, options);
             const json = await response.json();
             if (response.ok){
-                dispatch({type: 'LOGIN', payload: json[0]})
+                dispatch({type: 'LOGIN_SUCCESS', payload: json[0]})
                 history.push("/profile");
             } else {
                 history.push("/sign-in")
@@ -65,7 +66,7 @@ export const AuthContextProvider = ({ children }) => {
             const response = await fetch(url, options);
             const json = await response.json();
             if (response.ok) {
-                dispatch({type: 'LOGIN', payload: json[0]})
+                dispatch({type: 'LOGIN_SUCCESS', payload: json[0]})
                 history.push("/profile-lecturer");
             } else {
                 history.push("/sign-in")

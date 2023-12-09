@@ -4,22 +4,17 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
 //Import UseContext
-import { AuthContextProvider } from "./context/AuthContext";
 import { AlertContextProvider } from "./context/AlertContext";
-import { ProjectContextProvider } from "./context/ProjectContext";
-import { GroupContextProvider } from "./context/GroupContext";
+import { Provider } from 'react-redux';
+import store from './store/configureStore';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <AlertContextProvider>
-      <AuthContextProvider>
-        <ProjectContextProvider>
-          <GroupContextProvider>
-            <App />
-          </GroupContextProvider>
-        </ProjectContextProvider>
-      </AuthContextProvider>
-    </AlertContextProvider>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <AlertContextProvider>
+        <App />
+      </AlertContextProvider>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root"),
 );

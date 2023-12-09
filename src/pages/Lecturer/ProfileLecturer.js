@@ -1,8 +1,7 @@
 // Library imports
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { useAuthContext } from "../../hooks/useAuthContext";
 
 // Antd imports
 import {
@@ -37,11 +36,8 @@ import project1 from "../../assets/images/home-decor-1.jpeg";
 import project2 from "../../assets/images/home-decor-2.jpeg";
 import project3 from "../../assets/images/home-decor-3.jpeg";
 
-// Import variables API
-import { GET_LECTURER_BY_EMAIl } from "../../assets/api";
 
-
-function ProfileLecturer() {
+function ProfileLecturer({ user }) {
   const [imageURL, setImageURL] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -155,8 +151,7 @@ function ProfileLecturer() {
     },
   ];
 
-  const { user, dispatch } = useAuthContext()
-  if (!user?.name) return <div>Loading...</div>
+  if (!user?.isAuthenticated) return <div>Loading...</div>
 
   return (
     <>
@@ -352,4 +347,9 @@ function ProfileLecturer() {
   );
 }
 
-export default ProfileLecturer;
+// Connect the App component to the Redux store
+const mapStateToProps = (state) => ({
+  user: state.authReducer.user
+});
+
+export default connect(mapStateToProps)(ProfileLecturer);

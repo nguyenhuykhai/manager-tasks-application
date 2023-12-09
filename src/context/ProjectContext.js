@@ -1,18 +1,19 @@
 import { createContext, useReducer } from "react";
+import * as types from "../actions/actionTypes"
 
 export const ProjectContext = createContext()
 
 export const projectReducer = (state, action) => {
     switch (action.type) {
-        case 'SET_PROJECT':
+        case types.FETCH_PROJECT_INFO:
             return {
                 project: action.payload
             }
-        case 'CREATE_PROJECT':
+        case types.CREATE_PROJECT_INFO_INFO:
             return {
                 project: [action.payload, ...state.project]
             }
-        case 'DELETE_PROJECT':
+        case types.DELETE_PROJECT_INFO_INFO:
             return {
                 project: state.project.filter((p) => p._id !== action.payload._id)
             }

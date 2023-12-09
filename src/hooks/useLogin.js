@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
 import { useHistory } from "react-router-dom";
 
 // Import variables API
 import { GET_STUDENT_BY_EMAIl, GET_LECTURER_BY_EMAIl } from "../assets/api";
+import { loginSuccess, logout } from '../actions/authActions';
 
 // Import custome hooks
 import { useAlert } from "./useAlert";
@@ -12,7 +12,6 @@ export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const { alert } = useAlert()
-  const { dispatch } = useAuthContext();
   const history = useHistory()
 
   //   const login = async (email, password) => {
@@ -37,7 +36,7 @@ export const useLogin = () => {
   //         localStorage.setItem('user', JSON.stringify(json))
 
   //         // update the auth context
-  //         dispatch({type: 'LOGIN', payload: json})
+  //         dispatch({type: 'LOGIN_SUCCESS', payload: json})
 
   //         setIsLoading(false)
   //     }
@@ -59,7 +58,7 @@ export const useLogin = () => {
 
         if (isAuthenticated) {
           // update the auth context
-          dispatch({ type: "LOGIN", payload: json[0] });
+          loginSuccess(json[0])
           alert("success", "Đăng nhập thành công");
           switch (json[0]?.role) {
             case "Student":
@@ -93,7 +92,7 @@ export const useLogin = () => {
 
         if (isAuthenticated) {
           // update the auth context
-          dispatch({ type: "LOGIN", payload: json[0] });
+          loginSuccess(json[0])
           alert("success", "Đăng nhập thành công");
           switch (json[0]?.role) {
             case "Student":

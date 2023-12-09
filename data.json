@@ -26,7 +26,7 @@
             "score": 70,
             "link_facebook": "https://www.facebook.com/ngochieu",
             "email": "hieutv@gmail.com",
-            "github": "https://github.com/",
+            "github": "https://github.com/hieutv",
             "skills": "Front-end React, Angular, VueJS.",
             "about": "A passionate web developer from VietNam.",
             "picture": "https://scontent.fsgn2-8.fna.fbcdn.net/v/t39.30808-6/342764149_1890690684599722_1129199332142690555_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=dWUgWL2KRf4AX_ss_ij&_nc_ht=scontent.fsgn2-8.fna&oh=00_AfBhMmznGqPRb8v1jZkfoUSEzMC3x3rRPAjvgoFXxNIQ4Q&oe=65739221",
@@ -277,7 +277,7 @@
             "id": "3",
             "lecturer_id": "105",
             "semester_id": "1",
-            "class_name": "LAB211",
+            "class_name": "JPD101",
             "status": true
         }
     ],
@@ -389,21 +389,31 @@
         {
             "semester_id": "1",
             "status": true,
-            "end_date": "1/9/2023",
-            "start_date": "30/11/2023",
+            "end_date": "2023-09-01 00:00:00.0000000",
+            "start_date": "2023-11-30 00:00:00.0000000",
             "semester_name": "Fall 2023"
         },
         {
             "semester_id": "2",
             "status": true,
-            "end_date": "1/1/2023",
-            "start_date": "30/3/2023",
+            "end_date": "2024-01-01 00:00:00.0000000",
+            "start_date": "2024-03-30 00:00:00.0000000",
             "semester_name": "Spring 2024"
         }
     ],
+    "sprint": [
+      {
+        "sprint_id": "",
+        "status": "",
+        "end_date": "",
+        "start_date": "",
+        "sprint_name": "",
+        "feedback": ""
+      }
+    ],
     "groupInfo": [
         {
-            "id": "1",
+            "group_id": "1",
             "project_id": "1",
             "class_id": "1",
             "semester_id": "1",
@@ -541,7 +551,7 @@
             ]
         },
         {
-            "id": "2",
+            "group_id": "2",
             "project_id": "2",
             "class_id": "2",
             "semester_id": "1",

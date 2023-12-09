@@ -4,9 +4,9 @@
 import { Menu, Button } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { connect } from 'react-redux';
 
-function Sidenav({ color }) {
+function Sidenav({ color, user }) {
   const { pathname } = useLocation();
   const page = pathname.replace("/", "");
 
@@ -151,8 +151,6 @@ function Sidenav({ color }) {
     </svg>,
   ];
 
-  const { user, dispatch } = useAuthContext()
-
   return (
     <>
       <div className="brand">
@@ -277,4 +275,9 @@ function Sidenav({ color }) {
   );
 }
 
-export default Sidenav;
+// Connect the App component to the Redux store
+const mapStateToProps = (state) => ({
+  user: state.authReducer?.user
+});
+
+export default connect(mapStateToProps)(Sidenav);

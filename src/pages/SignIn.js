@@ -21,8 +21,8 @@ import {
     GithubOutlined,
 } from "@ant-design/icons";
 
-// Import custome hooks
-import { useLogin } from "../hooks/useLogin";
+// Import services
+import { useLogin } from "../services/authService";
 
 function onChange(checked) {
     console.log(`switch to ${checked}`);
