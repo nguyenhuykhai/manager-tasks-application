@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { useState, useEffect } from "react"
+import { connect } from 'react-redux';
 
 import { Link } from "react-router-dom";
 import {
@@ -21,8 +22,15 @@ import {
     GithubOutlined,
 } from "@ant-design/icons";
 
+// Import services
+import { useLogin } from "../services/authService";
+import { useHistory } from "react-router-dom";
+
 // Import custome hooks
-import { useLogin } from "../hooks/useLogin";
+import { useAlert } from "../hooks/useAlert";
+
+// Import Actions
+import { loginSuccess, logout } from '../actions/authActions';
 
 function onChange(checked) {
     console.log(`switch to ${checked}`);
@@ -110,7 +118,9 @@ const signin = [
     </svg>,
 ];
 
-export default function SignIn() {
+function SignIn({ user, dispatch }) {
+    const { showAlert } = useAlert();
+    const history = useHistory()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { login, error, isLoading } = useLogin()
@@ -122,10 +132,26 @@ export default function SignIn() {
         console.log("Failed:", errorInfo);
     };
 
-
-
     const handleSubmit = async (email, password) => {
-        await login(email, password)
+        const userData = await login(email, password);
+        if (userData != null) {
+            dispatch(loginSuccess(userData));
+            showAlert("success", "Đăng nhập thành công");
+            switch (userData?.role) {
+                case "Student":
+                    history.push("/profile");
+                    break;
+                case "Lecturer":
+                    history.push("/profile-lecturer");
+                    break;
+                case "Admin":
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            showAlert("error", "Đăng nhập thất bại");
+        }
     }
 
     return (
@@ -144,10 +170,18 @@ export default function SignIn() {
                                 </Link>
                             </Menu.Item>
                             <Menu.Item key="2">
-                                <Link to="/profile">
+                                {user?.role == "Student" && (<Link to="/profile">
                                     {profile}
                                     <span>Profile</span>
-                                </Link>
+                                </Link>)}
+                                {user?.role == "Lecturer" && (<Link to="/profile-lecturer">
+                                    {profile}
+                                    <span>Profile</span>
+                                </Link>)}
+                                {user == undefined && (<Link to="#">
+                                    {profile}
+                                    <span>Profile</span>
+                                </Link>)}
                             </Menu.Item>
                             <Menu.Item key="3">
                                 <Link to="/sign-up">
@@ -295,3 +329,16 @@ export default function SignIn() {
         </>
     )
 }
+
+// Connect the App component to the Redux store
+const mapStateToProps = (state) => ({
+    user: state.auth?.user,
+});
+
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatch
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

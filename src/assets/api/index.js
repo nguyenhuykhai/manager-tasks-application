@@ -1,9 +1,12 @@
-const API_URL = "http://localhost:9999/";
+export const API_BASE_URL = 'http://localhost:9999/';
+export const POSTS_ENDPOINT = '/posts';
+export const AUTH_ENDPOINT = '/auth';
+
 
 // API FOR TABLE STUDENT 
 export function GET_STUDENT() {
   return {
-    url: `${API_URL}Student`,
+    url: `${API_BASE_URL}Student`,
     options: {
       method: "GET",
     },
@@ -12,7 +15,7 @@ export function GET_STUDENT() {
 
 export function GET_STUDENT_BY_ID(id) {
   return {
-    url: `${API_URL}student/${id}`,
+    url: `${API_BASE_URL}student/${id}`,
     options: {
       method: "GET",
     },
@@ -21,7 +24,7 @@ export function GET_STUDENT_BY_ID(id) {
 
 export function GET_STUDENT_BY_EMAIl(email) {
   return {
-    url: `${API_URL}student?email=${email}`,
+    url: `${API_BASE_URL}student?email=${email}`,
     options: {
       method: 'GET',
       headers: {'Content-Type': 'application/json'}
@@ -31,7 +34,7 @@ export function GET_STUDENT_BY_EMAIl(email) {
 
 export function GET_LECTURER_BY_EMAIl(email) {
   return {
-    url: `${API_URL}lecturers?email=${email}`,
+    url: `${API_BASE_URL}lecturers?email=${email}`,
     options: {
       method: 'GET',
       headers: {'Content-Type': 'application/json'}
@@ -39,9 +42,9 @@ export function GET_LECTURER_BY_EMAIl(email) {
   };
 }
 
-export function GET_GROUP_INFO_BY_ID(id) {
+export function GET_GROUP_INFO_BY_ID(group_id, class_id) {
   return {
-    url: `${API_URL}groupInfo/${id}`,
+    url: `${API_BASE_URL}groupInfo?class_id=${class_id}&&group_id=${group_id}`,
     options: {
       method: 'GET',
       headers: {'Content-Type': 'application/json'}
@@ -51,7 +54,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 
 // export function DELETE_SLOT(id) {
 //   return {
-//     url: `${API_URL}/`,
+//     url: `${API_BASE_URL}/`,
 //     options: {
 //       method: "DELETE",
 //     },
@@ -60,7 +63,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 
 // export function LOGIN_API(mail) {
 //   return {
-//     url: `${API_URL}auth/login`,
+//     url: `${API_BASE_URL}auth/login`,
 //     options: {
 //       method: "POST",
 //     },
@@ -70,7 +73,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 
 // export function GET_ALL_EXAM_SCHEDULE() {
 //   return {
-//     url: `${API_URL}exam-schedule`,
+//     url: `${API_BASE_URL}exam-schedule`,
 //     options: {
 //       method: "GET",
 //     },
@@ -79,7 +82,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 
 // export function REGISTER_EXAM_SCHEDULE(examinerID, examSlotID) {
 //   return {
-//     url: `${API_URL}register`,
+//     url: `${API_BASE_URL}register`,
 //     options: {
 //       method: "POST",
 //     },
@@ -89,7 +92,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 
 // export function DELETE_EXAMSLOT_BY_ID(id) {
 //   return {
-//     url: `${API_URL}examSlot/${id}`,
+//     url: `${API_BASE_URL}examSlot/${id}`,
 //     options: {
 //       method: "DELETE",
 //     },
@@ -98,7 +101,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 
 // export function GET_ALL_EXAMROOM() {
 //   return {
-//     url: `${API_URL}examRoom`,
+//     url: `${API_BASE_URL}examRoom`,
 //     options: {
 //       method: "GET",
 //     },
@@ -107,7 +110,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 
 // export function GET_ALL_EXAMSLOT() {
 //   return {
-//     url: `${API_URL}examSlot`,
+//     url: `${API_BASE_URL}examSlot`,
 //     options: {
 //       method: "GET",
 //     },
@@ -117,7 +120,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 // // API EXPORT FILE EXCEL
 // export function EXPORT_FILE_EXCEL() {
 //   return {
-//     url: `${API_URL}api/excel/depart-examiner/download`,
+//     url: `${API_BASE_URL}api/excel/depart-examiner/download`,
 //     options: {
 //       method: "GET",
 //     },
@@ -129,7 +132,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 //  */
 // export function GET_FULL_SLOT_INFO() {
 //   return {
-//     url: `${API_URL}getExamSlotFullInfo`,
+//     url: `${API_BASE_URL}getExamSlotFullInfo`,
 //     options: {
 //       method: "GET",
 //     },
@@ -138,7 +141,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 
 // export function GET_FULL_SLOT_INFO_BY_ID(id) {
 //   return {
-//     url: `${API_URL}getExamSlotFullInfo/${id}`,
+//     url: `${API_BASE_URL}getExamSlotFullInfo/${id}`,
 //     options: {
 //       method: "GET",
 //     },
@@ -147,7 +150,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 
 // export function GET_ALL_STUDENT_BY_EXAM_ROOM_ID(id) {
 //   return {
-//     url: `${API_URL}examRoomWithStudent/${id}`,
+//     url: `${API_BASE_URL}examRoomWithStudent/${id}`,
 //     options: {
 //       method: "GET",
 //     },
@@ -160,7 +163,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 //   examRoomID
 // ) {
 //   return {
-//     url: `${API_URL}examRoom`,
+//     url: `${API_BASE_URL}examRoom`,
 //     options: {
 //       method: "POST",
 //     },
@@ -174,7 +177,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 
 // export function SET_ROLE(ID, Role) {
 //   return {
-//     url: `${API_URL}auth/authorize`,
+//     url: `${API_BASE_URL}auth/authorize`,
 //     options: {
 //       method: "POST",
 //     },
@@ -184,7 +187,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 
 // export function GET_ALL_EXAM_SLOT() {
 //   return {
-//     url: `${API_URL}exam-schedule`,
+//     url: `${API_BASE_URL}exam-schedule`,
 //     options: {
 //       method: "GET",
 //     },
@@ -198,7 +201,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 // */
 // export function UPDATE_REGISTER_EXAMSLOT(examinerID, examSlotID) {
 //   return {
-//     url: `${API_URL}exam-room/update-register`,
+//     url: `${API_BASE_URL}exam-room/update-register`,
 //     options: {
 //       method: "PUT",
 //     },
@@ -209,7 +212,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 // // Student Route
 // export function VIEW_ALL_EXAMROOM() {
 //   return {
-//     url: `${API_URL}student/viewExamSlot/all?StudentId=SE171018&&SemesterCode=Fall_2023`,
+//     url: `${API_BASE_URL}student/viewExamSlot/all?StudentId=SE171018&&SemesterCode=Fall_2023`,
 //     options: {
 //       method: "GET",
 //     },
@@ -218,7 +221,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 
 // export function VIEW_ALL_EXAMINER_EXAMSLOT(examinerID) {
 //   return {
-//     url: `${API_URL}examiner/exam-schedule/filter?examinerID=${examinerID}`,
+//     url: `${API_BASE_URL}examiner/exam-schedule/filter?examinerID=${examinerID}`,
 //     options: {
 //       method: "GET",
 //     },
@@ -228,7 +231,7 @@ export function GET_GROUP_INFO_BY_ID(id) {
 // export function VIEW_EXAMROOM_BY_EXAMINERID(examinerID, semesterID, month, week) {
 //   console.log(examinerID, semesterID, month, week);
 //   return {
-//     url: `${API_URL}examiner/exam-schedule/filter?examinerID=${examinerID.trim()}&&semesterID=${semesterID}&&month=${month}&&week=${week}`,
+//     url: `${API_BASE_URL}examiner/exam-schedule/filter?examinerID=${examinerID.trim()}&&semesterID=${semesterID}&&month=${month}&&week=${week}`,
 //     options: {
 //       method: "GET",
 //     },

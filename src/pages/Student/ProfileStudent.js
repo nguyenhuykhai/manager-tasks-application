@@ -1,15 +1,13 @@
 // Library imports
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
 
-//Import custome hooks
-import { useAuthContext } from "../../hooks/useAuthContext";
-import { useGroupContext } from "../../hooks/useGroupContext";
-import { useAlert } from "../../hooks/useAlert";
+// Import services
+import useGroupService from "../../services/groupService";
 
-// Import variables API
-import { GET_GROUP_INFO_BY_ID } from "../../assets/api";
+// Import Action
+import { fetchGroupsSuccess, fetchGroupDetailSuccess } from '../../actions/groupActions';
 
 // Antd imports
 import {
@@ -45,7 +43,7 @@ import project2 from "../../assets/images/home-decor-2.jpeg";
 import project3 from "../../assets/images/home-decor-3.jpeg";
 
 
-function ProfileStudent() {
+function ProfileStudent({ user, groups, selectedGroup, dispatch }) {
   const [imageURL, setImageURL] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -159,29 +157,21 @@ function ProfileStudent() {
     },
   ];
 
-  const { user, dispatch } = useAuthContext()
-  const { group, dispatch: dispatchGroup } = useGroupContext()
-  const { alert } = useAlert()
+  const { fetchGroupDetailInfo } = useGroupService();
 
   // Interactive with API
-  useEffect(() => {
-    const fetchGroupInfo = async () => {
-      const { url, options } = GET_GROUP_INFO_BY_ID(user?.group_id);
-      const response = await fetch(url, options);
-      const json = await response.json();
-      if (response.ok) {
-        dispatchGroup({ type: "SET_GROUP", payload: json });
-      } else {
-        alert("error", "Lấy thông tin group dự án không thành công");
+  useEffect(async () => {
+    if (user != null) {
+      const data = await fetchGroupDetailInfo(user);
+      if (data != null) {
+        dispatch(fetchGroupDetailSuccess(data[0]));
       }
     }
-    if (user?.token) {
-      fetchGroupInfo();
-    }
-  }, [dispatch, user, dispatchGroup])
+  }, [user])
 
-  if (!group?.id) return <div>Loading...</div>
-  
+  console.log(selectedGroup);
+
+  if (user == null) return <div>Loading...</div>
 
   return (
     <>
@@ -314,7 +304,7 @@ function ProfileStudent() {
           >
             <List
               itemLayout="horizontal"
-              dataSource={group?.members}
+              dataSource={selectedGroup?.members}
               split={false}
               className="conversations-list"
               renderItem={(item) => (
@@ -338,7 +328,7 @@ function ProfileStudent() {
         title={
           <>
             <h6 className="font-semibold">Quản lý công việc</h6>
-            <p>Dự án - {group?.context}</p>
+            <p>Dự án - {selectedGroup?.context}</p>
           </>
         }
       >
@@ -392,4 +382,17 @@ function ProfileStudent() {
   );
 }
 
-export default ProfileStudent;
+// Connect the App component to the Redux store
+const mapStateToProps = (state) => ({
+  user: state.auth?.user,
+  groups: state.group.group,
+  selectedGroup: state.group.selectedGroup
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatch
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileStudent);

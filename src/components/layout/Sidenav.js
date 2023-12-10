@@ -4,9 +4,8 @@
 import { Menu, Button } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import { useAuthContext } from "../../hooks/useAuthContext";
 
-function Sidenav({ color }) {
+function Sidenav({ color, user }) {
   const { pathname } = useLocation();
   const page = pathname.replace("/", "");
 
@@ -151,8 +150,6 @@ function Sidenav({ color }) {
     </svg>,
   ];
 
-  const { user, dispatch } = useAuthContext()
-
   return (
     <>
       <div className="brand">
@@ -217,7 +214,7 @@ function Sidenav({ color }) {
           Account Pages
         </Menu.Item>
         <Menu.Item key="6">
-          {user?.role == "Student" ? (
+          {user?.role == "Student" && (
             <NavLink to="/profile">
               <span
                 className="icon"
@@ -229,7 +226,8 @@ function Sidenav({ color }) {
               </span>
               <span className="label">Profile</span>
             </NavLink>
-          ) : (
+          )}
+          {user?.role == "Lecturer" && (
             <NavLink to="/profile-lecturer">
               <span
                 className="icon"

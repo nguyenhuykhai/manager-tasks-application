@@ -1,8 +1,9 @@
 
 
 import { useState, useEffect } from "react";
-import { useAuthContext } from "../../hooks/useAuthContext";
-import { useLogout } from "../../hooks/useLogout";
+import { useLogout } from "../../services/authService"
+import { connect } from 'react-redux';
+import { logout as logoutAction } from "../../actions/authActions" 
 
 import {
   Row,
@@ -250,18 +251,23 @@ function Header({
   handleSidenavColor,
   handleSidenavType,
   handleFixedNavbar,
+  user,
+  dispatch
 }) {
   const { Title, Text } = Typography;
-
+  const { logout } = useLogout()
   const [visible, setVisible] = useState(false);
   const [sidenavType, setSidenavType] = useState("transparent");
-  const { user, dispatch } = useAuthContext()
-  const { logout } = useLogout();
 
   useEffect(() => window.scrollTo(0, 0));
 
   const showDrawer = () => setVisible(true);
   const hideDrawer = () => setVisible(false);
+
+  const handleLogout = () => {
+    logout()
+    dispatch(logoutAction())
+  }
 
   return (
     <>
@@ -393,7 +399,7 @@ function Header({
                 </div>
                 <div className="ant-docment">
                   <ButtonContainer>
-                    <Button onClick={() => logout()} type="primary" size="medium">
+                    <Button onClick={() => handleLogout()} type="primary" size="medium">
                       Đăng xuất
                     </Button>
                   </ButtonContainer>
@@ -411,5 +417,9 @@ function Header({
     </>
   );
 }
-
-export default Header;
+const mapDispatchToProps = dispatch => {
+  return {
+      dispatch
+  };
+};
+export default connect(mapDispatchToProps)(Header);

@@ -247,6 +247,7 @@ function Header({
   handleSidenavColor,
   handleSidenavType,
   handleFixedNavbar,
+  user
 }) {
   const { Title, Text } = Typography;
 
