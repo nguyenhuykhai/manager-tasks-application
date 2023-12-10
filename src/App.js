@@ -15,27 +15,37 @@ import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
 
 import { connect } from 'react-redux';
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 // Import Custome Function
 import PrivateRoute from "./routers/PrivateRouter"
-import { useLogin } from "./hooks/useLogin"
+import { useLogin } from "./services/authService"
 
-function App({ user }) {
+// Import Actions
+import { loginSuccess, logout } from './actions/authActions';
 
+function App({ user, dispatch }) {
   const { login, loading, error } = useLogin();
 
-  useEffect(() => {
-    const id = localStorage.getItem('id');
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
-    const email = localStorage.getItem('email');
-    const password = localStorage.getItem('password');
+  useEffect(async () => {
+    const fetchData = async () => {
+      try {
+        const email = localStorage.getItem('email');
+        const password = localStorage.getItem('password');
+        const isAuthenticated = localStorage.getItem('isAuthenticated');
 
-    if (isAuthenticated) {
-      // Dispatch the login action with the necessary parameters
-      login(email, password);
-    }
-  }, [user]);
+        if (user == null && isAuthenticated != null) {
+          // Dispatch the login action with the necessary parameters
+          const userData = await login(email, password);
+          dispatch(loginSuccess(userData));
+        }
+      } catch (error) {
+        // Handle errors if needed
+        console.error('Login failed:', error);
+      }
+    };
+    fetchData();
+  }, [dispatch, user]);
 
   return (
     <div className="App">
@@ -97,21 +107,22 @@ function App({ user }) {
             allowedRoles={['Lecturer']}
             redirectTo="/sign-in"
           />
-          {/* <Route exact path="/dashboard" component={Home} />
-          <Route exact path="/tables" component={Tables} />
-          <Route exact path="/billing" component={Billing} />
-          <Route exact path="/rtl" component={Rtl} />
-          <Route exact path="/profile" component={ProfileStudent} />
-          <Route exact path="/profile-lecturer" component={ProfileLecturer} /> */}
         </Main>
       </Switch>
+      <Redirect path="*" to="/sign-in" />
     </div>
   );
 }
 
 // Connect the App component to the Redux store
 const mapStateToProps = (state) => ({
-  user: state.authReducer?.user
+  user: state.auth?.user,
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatch
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

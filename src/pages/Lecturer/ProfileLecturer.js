@@ -349,7 +349,7 @@ function ProfileLecturer({ user }) {
 
 // Connect the App component to the Redux store
 const mapStateToProps = (state) => ({
-  user: state.authReducer.user
+  user: state.auth?.user
 });
 
 export default connect(mapStateToProps)(ProfileLecturer);

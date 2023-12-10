@@ -1,5 +1,3 @@
-// PrivateRoute: Check user is already Authenticated and Authorize to allow go to need step
-
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 

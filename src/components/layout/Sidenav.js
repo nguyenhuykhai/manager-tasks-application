@@ -4,7 +4,6 @@
 import { Menu, Button } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import { connect } from 'react-redux';
 
 function Sidenav({ color, user }) {
   const { pathname } = useLocation();
@@ -215,7 +214,7 @@ function Sidenav({ color, user }) {
           Account Pages
         </Menu.Item>
         <Menu.Item key="6">
-          {user?.role == "Student" ? (
+          {user?.role == "Student" && (
             <NavLink to="/profile">
               <span
                 className="icon"
@@ -227,7 +226,8 @@ function Sidenav({ color, user }) {
               </span>
               <span className="label">Profile</span>
             </NavLink>
-          ) : (
+          )}
+          {user?.role == "Lecturer" && (
             <NavLink to="/profile-lecturer">
               <span
                 className="icon"
@@ -275,9 +275,4 @@ function Sidenav({ color, user }) {
   );
 }
 
-// Connect the App component to the Redux store
-const mapStateToProps = (state) => ({
-  user: state.authReducer?.user
-});
-
-export default connect(mapStateToProps)(Sidenav);
+export default Sidenav;

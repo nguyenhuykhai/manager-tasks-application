@@ -2,61 +2,182 @@
 
 FU_MANAGER_PROJECT (Front-end) là một ứng dụng web được thiết kế và phát triển để hỗ trợ quản lý dự án nhóm lớp cho sinh viên tại Trường Đại học FPT xây dựng bởi 2 sinh viên FPT. Dự án này nhằm mục đích tạo ra một nền tảng trực tuyến giúp sinh viên và giáo viên theo dõi, quản lý, và tương tác trong quá trình thực hiện các dự án nhóm trong quá trình học tập.
 
-## Dưới đây là một số tính năng chính của ứng dụng:
+---
 
-1. Quản lý thông tin sinh viên:
+# Yêu Cầu Môi Trường để Chạy Dự Án | Setup Instructions
 
-Đăng ký và quản lý thông tin cá nhân của sinh viên.
-Xem và cập nhật thông tin liên quan đến khóa học, lớp học, và dự án nhóm.
+1. **Node.js and npm:**
 
-2. Quản lý dự án nhóm:
+   - Cài đặt Node.js phiên bản 18 trở lên. npm sẽ được cài đặt kèm theo. | Install Node.js version 18 or above. npm will be installed along with it.
 
-Tạo mới dự án nhóm và gán sinh viên vào các nhóm tương ứng.
-Xem danh sách các dự án nhóm có sẵn và thông tin chi tiết của từng dự án.
-Cập nhật tiến độ, mô tả, và các thông tin khác của dự án.
+2. **React App:**
 
-3. Giao tiếp trong nhóm:
+   - Tạo một ứng dụng React mới bằng lệnh sau: | Create a new React app using the following command:
+     ```bash
+     npx create-react-app my-react-app
+     ```
 
-Hệ thống tin nhắn trong nhóm để giao tiếp hiệu quả giữa các thành viên.
-Chia sẻ tài liệu và tài nguyên cho dự án.
+3. **Cài Đặt Dependencies Dự Án: | Install Project Dependencies:**
 
-4. Quản lý tài liệu:
+   - Di chuyển vào thư mục gốc của dự án: | Navigate into the root directory of the project:
+     ```bash
+     cd my-react-app
+     ```
+   - Chạy lệnh sau để cài đặt các dependencies | Run the following command to install project dependencies:
+     ```bash
+     npm install
+     ```
 
-Tích hợp kho lưu trữ tài liệu để sinh viên có thể chia sẻ và lưu trữ tài liệu dự án.
-Cập nhật và quản lý phiên bản của các tài liệu.
+4. **Chạy Dự Án | Run the Project:**
+   - Chạy lệnh sau để khởi động dự án: | Execute the following command to start the project:
+     ```bash
+     npm start
+     ```
+   - Truy cập ứng dụng tại `http://localhost:3000/` trong trình duyệt web của bạn.
 
-5. Đánh giá và phản hồi:
+---
 
-Hệ thống đánh giá thành viên trong nhóm dựa trên đóng góp và hiệu suất làm việc.
-Cơ chế để sinh viên và giáo viên có thể đưa ra phản hồi về dự án và tiến độ làm việc.
+## Dưới đây là một số tính năng chính của ứng dụng | Application
 
-6. Lịch trình và Deadline:
+1. Quản lý Dự Án:
+Tạo Dự Án: Sinh viên hoặc giảng viên có thể tạo dự án mới, đặt tên, mô tả và xác định mục tiêu của dự án.
+Quản lý Tiến Độ (Process): Hệ thống theo dõi tiến độ của dự án, cho phép người dùng thêm, chỉnh sửa và xóa các bước trong quy trình làm việc.
 
-Hiển thị lịch trình dự án và các deadline quan trọng.
-Thông báo nhắc nhở về các milestone và deadline sắp tới.
+2. Quản lý Sprint:
+Tạo Sprint: Định kỳ tạo Sprint để quản lý công việc trong khoảng thời gian cố định.
+Gán Công Việc: Sinh viên có thể tự gán công việc cho mình trong mỗi Sprint, và giảng viên có thể gán công việc cho từng nhóm hoặc sinh viên.
 
-7. Bảo mật và Quyền truy cập:
+3. Feedback và Chấm Điểm:
+Phản Hồi (Feedback): Sinh viên có thể nhận phản hồi từ giảng viên và thành viên khác trong nhóm về công việc của họ.
+Chấm Điểm: Giảng viên có thể chấm điểm cho từng công việc hoặc dự án, cung cấp điểm số và phản hồi chi tiết.
 
-Đảm bảo tính bảo mật thông tin cá nhân của sinh viên.
-Xác định và quản lý quyền truy cập của sinh viên và giáo viên vào các phần khác nhau của hệ thống.
+4. Quản lý theo Nhóm:
+Tạo Nhóm: Sinh viên có thể tự tạo nhóm hoặc được phân nhóm tự động.
+Giao Việc trong Nhóm: Khả năng phân công công việc, theo dõi tiến độ và phản hồi được thực hiện theo nhóm.
+
+5. Chat Real-time:
+Chat Nhóm: Sinh viên và giảng viên có thể thảo luận và trao đổi ý kiến trong các cuộc trò chuyện nhóm.
+Chat Riêng: Khả năng trò chuyện riêng tư giữa sinh viên và giảng viên.
+
+6. Thông Báo và Lịch Nhắc:
+Thông Báo Tự Động: Gửi thông báo về các sự kiện quan trọng như deadline, sự kiện mới, hoặc phản hồi từ giảng viên.
+Lịch Nhắc: Tự động tạo lịch nhắc cho các sự kiện trong Sprint hoặc Dự Án.
+
+7. Tương Tác và Giao Tiếp:
+Tương Tác Tương Đối: Khả năng tương tác dễ dàng và linh hoạt giữa sinh viên và giảng viên.
+Giao Tiếp Thông Qua Tác Vụ (Task-based Communication): Có thể gửi tin nhắn, thảo luận trực tiếp trên công việc hoặc nhiệm vụ cụ thể.
+
+8. Bảo Mật và Quyền Truy Cập:
+Quản lý Quyền Truy Cập: Xác định quyền truy cập của từng người dùng (sinh viên, giảng viên) đối với các tính năng cụ thể.
+Bảo Mật Thông Tin: Đảm bảo an toàn và bảo mật thông tin của sinh viên và dữ liệu dự án.
+
+9. Báo Cáo và Thống Kê:
+Báo Cáo Tiến Độ: Cung cấp báo cáo tự động về tiến độ dự án, công việc đã hoàn thành và chưa hoàn thành.
+Thống Kê Điểm Số: Hiển thị điểm số tổng kết và thống kê chi tiết về điểm số của sinh viên.
+
+10. Đa Nền Tảng và Đa Thiết Bị:
+Responsive Design: Ứng dụng có giao diện phản hồi, phù hợp với mọi loại thiết bị.
+Hỗ Trợ Đa Trình Duyệt: Đảm bảo hoạt động trơn tru trên các trình duyệt phổ biến.
 
 - Dự án này giúp tăng cường tương tác và hợp tác giữa sinh viên trong quá trình học tập, đồng thời cung cấp cho giáo viên công cụ quản lý hiệu quả để đánh giá và hỗ trợ quá trình phát triển kỹ năng làm việc nhóm của sinh viên.
+
+---
+
+## Cấu trúc dự án | Project Structure
+
+```plaintext
+|-- src/
+|   |-- assets/
+|   |   |-- api/
+|   |   |   |-- index.js
+|   |   |-- styles/
+|   |   |   |-- main.css
+|   |   |   |-- responsive.css
+|   |
+|   |-- actions/
+|   |   |-- actionTypes.js
+|   |   |-- authActions.js
+|   |   |-- groupActions.js
+|   |   |-- projectActions.js
+|   |
+|   |-- components/
+|   |   |-- chart/
+|   |   |   |-- configs/
+|   |   |   |   |-- eChart.js
+|   |   |   |   |-- line.js
+|   |   |   |-- EChart.js
+|   |   |   |-- LineChart.js
+|   |   |-- component/
+|   |   |   |-- Menu.js
+|   |   |-- layout/
+|   |   |   |-- Footer.js
+|   |   |   |-- Header.js
+|   |   |   |-- HeaderRtl.js
+|   |   |   |-- Main.js
+|   |   |   |-- Sidenav.js
+|   |
+|   |-- context/
+|   |   |-- AlertContext.js
+|   |
+|   |-- hooks/
+|   |   |-- Lecturer/
+|   |   |   |-- ProfileLecturer.js
+|   |   |-- Student/
+|   |   |   |-- ProfileStudent.js
+|   |   |-- Billing.js
+|   |   |-- Home.js
+|   |   |-- Rtl.js
+|   |   |-- SignIn.js
+|   |   |-- SignUp.js
+|   |   |-- Tables.js
+|   |
+|   |-- reducers/
+|   |   |-- authReducer.js
+|   |   |-- groupReducer.js
+|   |   |-- projectReducer.js
+|   |   |-- index.js
+|   |
+|   |-- services/
+|   |   |-- authService.js
+|   |   |-- groupService.js
+|   |   |-- projectService.js
+|   |   |-- index.js
+|   |
+|   |   |-- store/
+|   |   |   |-- configureStore.js
+|   |
+|   |-- App.js
+|   |-- index.js
+```
+
+---
+
+## Công nghệ | Technical
+
+- Frontend: React
+- Backend: Spring Boot
+- Database: SQL Server
+- Real-Time Interactions: Firebase
+- Containerization: Docker
+- Send mail with Nodemailer
+- Payment: Paypal, VNPay
+- GG Cloud: Login, Gmail API
+
+---
+
+## Tài liệu | Documentation
+
+ [Function Requirement](https://docs.google.com/document/d/1CPjPpIMVkAp9KRoCvXRMUoL48Fq_O6yInnZExIvpzVI/edit?fbclid=IwAR32KoldKVxeqRD4jj6fraiftt8D1twY8l4e1sg16PIT_dbG97FOcaQiVsI).
+
+---
 
 ## Demo
 
 - [Đang trong quá trình xây dựng](https://github.com/nguyenhuykhai/manager-tasks-application)
 
-## Documentation
+---
 
- [Function Requirement](https://docs.google.com/document/d/1CPjPpIMVkAp9KRoCvXRMUoL48Fq_O6yInnZExIvpzVI/edit?fbclid=IwAR32KoldKVxeqRD4jj6fraiftt8D1twY8l4e1sg16PIT_dbG97FOcaQiVsI).
-
-## Technical
-
-- Frontend: [React](https://react.dev/)
-
-- Thư viện CSS: [Ant Design of React](https://ant.design/docs/react/introduce).
-
-## Repository FU_MANAGER_PROJECT (Back-end)
+## Máy chủ FU_MANAGER_PROJECT | Server FU_MANAGER_PROJECT | BACKEND
 
 - [Đang trong quá trình xây dựng](https://github.com/nguyenhuykhai/manager-tasks-application)
 

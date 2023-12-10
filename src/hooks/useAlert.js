@@ -6,11 +6,11 @@ import { AlertContext } from "../context/AlertContext";
 export const useAlert = () => {
   const { setTypeAlert, setContentAlert, setFlag, flag } = useContext(AlertContext);
 
-  const alert = (type, context) => {
+  const showAlert = (type, context) => {
     setTypeAlert(type);
     setContentAlert(context);
     setFlag(prevFlag => !prevFlag);
   };
 
-  return { alert };
+  return { showAlert };
 };

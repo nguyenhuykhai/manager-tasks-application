@@ -43,7 +43,7 @@ import project2 from "../../assets/images/home-decor-2.jpeg";
 import project3 from "../../assets/images/home-decor-3.jpeg";
 
 
-function ProfileStudent({ user, groups, selectedGroup }) {
+function ProfileStudent({ user, groups, selectedGroup, dispatch }) {
   const [imageURL, setImageURL] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -161,16 +161,17 @@ function ProfileStudent({ user, groups, selectedGroup }) {
 
   // Interactive with API
   useEffect(async () => {
-    if (user) {
+    if (user != null) {
       const data = await fetchGroupDetailInfo(user);
       if (data != null) {
-        fetchGroupDetailSuccess(data);
+        dispatch(fetchGroupDetailSuccess(data[0]));
       }
     }
   }, [user])
 
-  if (!selectedGroup) return <div>Loading...</div>
-  
+  console.log(selectedGroup);
+
+  if (user == null) return <div>Loading...</div>
 
   return (
     <>
@@ -383,9 +384,15 @@ function ProfileStudent({ user, groups, selectedGroup }) {
 
 // Connect the App component to the Redux store
 const mapStateToProps = (state) => ({
-  user: state.authReducer.user,
-  groups: state.groupReducer.group,
-  selectedGroup: state.groupReducer.selectedGroup
+  user: state.auth?.user,
+  groups: state.group.group,
+  selectedGroup: state.group.selectedGroup
 });
 
-export default connect(mapStateToProps)(ProfileStudent);
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatch
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileStudent);

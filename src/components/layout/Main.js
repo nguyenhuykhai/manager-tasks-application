@@ -6,10 +6,11 @@ import { Layout, Drawer, Affix } from "antd";
 import Sidenav from "./Sidenav";
 import Header from "./Header";
 import Footer from "./Footer";
+import { connect } from 'react-redux';
 
 const { Header: AntHeader, Content, Sider } = Layout;
 
-function Main({ children }) {
+function Main({ children, user }) {
   const [visible, setVisible] = useState(false);
   const [placement, setPlacement] = useState("right");
   const [sidenavColor, setSidenavColor] = useState("#1890ff");
@@ -82,7 +83,7 @@ function Main({ children }) {
         }`}
         style={{ background: sidenavType }}
       >
-        <Sidenav color={sidenavColor} />
+        <Sidenav color={sidenavColor} user={user}/>
       </Sider>
       <Layout>
         {fixed ? (
@@ -95,6 +96,7 @@ function Main({ children }) {
                 handleSidenavColor={handleSidenavColor}
                 handleSidenavType={handleSidenavType}
                 handleFixedNavbar={handleFixedNavbar}
+                user={user}
               />
             </AntHeader>
           </Affix>
@@ -107,6 +109,7 @@ function Main({ children }) {
               handleSidenavColor={handleSidenavColor}
               handleSidenavType={handleSidenavType}
               handleFixedNavbar={handleFixedNavbar}
+              user={user}
             />
           </AntHeader>
         )}
@@ -117,4 +120,9 @@ function Main({ children }) {
   );
 }
 
-export default Main;
+// Connect the App component to the Redux store
+const mapStateToProps = (state) => ({
+  user: state.auth?.user
+});
+
+export default connect(mapStateToProps)(Main);

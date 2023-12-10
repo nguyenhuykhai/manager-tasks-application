@@ -1,13 +1,12 @@
 
 import { useHistory } from "react-router-dom";
-import { loginSuccess, logout } from '../actions/authActions';
 import { useState } from "react";
 
 // Import variables API
 import { GET_STUDENT_BY_EMAIl, GET_LECTURER_BY_EMAIl } from "../assets/api";
 
 // Import custome hooks
-import useAlert from "../hooks/useAlert";
+import { useAlert } from "../hooks/useAlert";
 
 export const useLogin = () => {
     const [error, setError] = useState(null);
@@ -46,7 +45,6 @@ export const useLogin = () => {
     const login = async (email, password) => {
         setIsLoading(true);
         setError(null);
-
         // Fake login -> wait Back-end
         const fakeLogin = async () => {
             try {
@@ -57,27 +55,14 @@ export const useLogin = () => {
                 const isAuthenticated = handleLogin(json[0]);
 
                 if (isAuthenticated) {
-                    // update the auth context
-                    
-                    alert("success", "Đăng nhập thành công");
-                    switch (json[0]?.role) {
-                        case "Student":
-                            history.push("/profile");
-                            break;
-                        case "Lecturer":
-                            history.push("/profile-lecturer");
-                            break;
-                        case "Admin":
-                            break;
-                        default:
-                            break;
-                    }
+                    let user = {...json[0], isAuthenticated: true};
+                    return user;
                 } else {
-                    fakeLogin2()
+                    return await fakeLogin2()
                 }
                 setIsLoading(false);
             } catch (error) {
-                fakeLogin2()
+                return await fakeLogin2()
             }
         };
 
@@ -91,55 +76,42 @@ export const useLogin = () => {
                 const isAuthenticated = handleLogin(json[0]);
 
                 if (isAuthenticated) {
-                    // update the auth context
-                    loginSuccess(json[0]);
-                    alert("success", "Đăng nhập thành công");
-                    switch (json[0]?.role) {
-                        case "Student":
-                            history.push("/profile");
-                            break;
-                        case "Lecturer":
-                            history.push("/profile-lecturer");
-                            break;
-                        case "Admin":
-                            break;
-                        default:
-                            break;
-                    }
+                    let user = {...json[0], isAuthenticated: true};
+                    setIsLoading(false);
+                    return user;
                 } else {
                     console.log("ERROR: Invalid role");
                     setError("Invalid role");
-                    alert("error", "Đăng nhập thất bại");
+                    setIsLoading(false);
+                    return null;
                 }
-                setIsLoading(false);
             } catch (error) {
                 console.log("ERROR: ", error);
-                setIsLoading(false);
-                alert("error", "Đăng nhập thất bại");
                 setError(error);
+                setIsLoading(false);
+                return null;
             }
         };
 
-        fakeLogin();
+        return await fakeLogin();
     };
     return { login, isLoading, error };
 };
 
 export const useLogout = () => {
-    const history = useHistory()
-
-    // remove user from storage
-    localStorage.removeItem("id");
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    localStorage.removeItem('email');
-    localStorage.removeItem('name');
-    localStorage.removeItem('is_leader');
-    localStorage.removeItem('isAuthenticated');
-    localStorage.removeItem('isAuthenticated');
-    localStorage.removeItem('password');
-    logout()
-    history.push("/sign-in");
+    const logout = () => {
+        // remove user from storage
+        localStorage.removeItem("id");
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        localStorage.removeItem('email');
+        localStorage.removeItem('name');
+        localStorage.removeItem('is_leader');
+        localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('isAuthenticated');
+        localStorage.removeItem('password');
+    }
+    return { logout }
 }
 
 // Function handle login and storage data in LocalStorage
@@ -148,8 +120,6 @@ const handleLogin = (data) => {
     if (data?.role !== "Lecturer" && data?.role !== "Student" && data?.role !== "Admin") {
         return false;
     }
-    let user = {...data, isAuthenticated: true};
-    loginSuccess(user);
     switch (data?.role) {
         case "Lecturer":
             // Store the token in localStorage
