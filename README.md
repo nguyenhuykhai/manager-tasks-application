@@ -176,12 +176,12 @@ Hỗ Trợ Đa Trình Duyệt: Đảm bảo hoạt động trơn tru trên các 
 
 ## Demo
 
-- [Đang trong quá trình xây dựng](https://github.com/nguyenhuykhai/manager-tasks-application)
+- [Đang trong quá trình xây dựng](https://github.com/nguyenhuykhai/be-manager-tasks-application)
 
 ---
 
-## Máy chủ FU_MANAGER_PROJECT | Server FU_MANAGER_PROJECT | BACKEND
+## Máy chủ FU_MANAGER_PROJECT | BACKEND
 
-- [Đang trong quá trình xây dựng](https://github.com/nguyenhuykhai/manager-tasks-application)
+- [FU_MANAGER_PROJECT (Back-end)](https://github.com/nguyenhuykhai/be-manager-tasks-application)
 
 
