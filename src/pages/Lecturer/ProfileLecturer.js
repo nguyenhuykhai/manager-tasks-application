@@ -252,10 +252,10 @@ function ProfileLecturer({ user }) {
             <hr className="my-25" />
             <Descriptions title="Chi tiết">
               <Descriptions.Item label="Full Name" span={3}>
-              {user?.name}
+                {user?.name}
               </Descriptions.Item>
               <Descriptions.Item label="Email" span={3}>
-              {user?.email}
+                {user?.email}
               </Descriptions.Item>
             </Descriptions>
           </Card>

@@ -2254,6 +2254,10 @@ small.redtext {
   color: red;
 }
 
+small.yellowtext {
+  color: yellowgreen;
+}
+
 .full-width path {
   fill: transparent;
 }

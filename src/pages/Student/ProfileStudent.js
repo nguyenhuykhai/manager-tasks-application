@@ -222,21 +222,21 @@ function ProfileStudent({ user, groups, selectedGroup, dispatch }) {
             title={<h6 className="font-semibold m-0">Cài đặt</h6>}
           >
             <ul className="list settings-list">
-              <li>
-                <h6 className="list-header text-sm text-muted">TẢI KHOẢN</h6>
+            <li>
+                <h6 className="list-header text-sm text-muted">TÀI KHOẢN</h6>
               </li>
               <li>
                 <Switch defaultChecked />
 
-                <span>Email me when someone follows me</span>
+                <span>Gửi email cho tôi khi có lời mời vào nhóm</span>
               </li>
               <li>
                 <Switch />
-                <span>Email me when someone answers me</span>
+                <span>Gửi email cho tôi khi có thông báo từ giảng viên</span>
               </li>
               <li>
                 <Switch defaultChecked />
-                <span>Email me when someone mentions me</span>
+                <span>Gửi email cho tôi khi có thông báo từ trưởng nhóm</span>
               </li>
               <li>
                 <h6 className="list-header text-sm text-muted m-0">
@@ -245,15 +245,15 @@ function ProfileStudent({ user, groups, selectedGroup, dispatch }) {
               </li>
               <li>
                 <Switch defaultChecked />
-                <span>New launches and projects</span>
+                <span>Tạo mới dự án</span>
               </li>
               <li>
                 <Switch defaultChecked />
-                <span>Monthly product updates</span>
+                <span>Thông báo tiến độ dự án</span>
               </li>
               <li>
                 <Switch defaultChecked />
-                <span>Subscribe to newsletter</span>
+                <span>Thông báo nhiệm vụ mới của tôi</span>
               </li>
             </ul>
           </Card>

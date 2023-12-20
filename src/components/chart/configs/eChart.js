@@ -1,8 +1,8 @@
 const eChart = {
   series: [
     {
-      name: "Sales",
-      data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+      name: "Nhiệm vụ",
+      data: [2, 3, 2, 5, 6, 7, 8],
       color: "#fff",
     },
   ],
@@ -39,15 +39,13 @@ const eChart = {
     },
     xaxis: {
       categories: [
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
+        "Thứ 2",
+        "Thứ 3",
+        "Thứ 4",
+        "Thứ 5",
+        "Thứ 6",
+        "Thứ 7",
+        "Chủ nhật",
       ],
       labels: {
         show: true,
@@ -56,8 +54,6 @@ const eChart = {
         maxWidth: 160,
         style: {
           colors: [
-            "#fff",
-            "#fff",
             "#fff",
             "#fff",
             "#fff",
@@ -86,8 +82,6 @@ const eChart = {
             "#fff",
             "#fff",
             "#fff",
-            "#fff",
-            "#fff",
           ],
         },
       },
@@ -96,7 +90,7 @@ const eChart = {
     tooltip: {
       y: {
         formatter: function (val) {
-          return "$ " + val + " thousands";
+          return val + " nhiệm vụ";
         },
       },
     },

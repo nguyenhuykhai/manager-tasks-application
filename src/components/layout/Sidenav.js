@@ -154,12 +154,13 @@ function Sidenav({ color, user }) {
     <>
       <div className="brand">
         <img src={logo} alt="" />
-        <span>Muse Dashboard</span>
+        <span>FU Manager Project</span>
       </div>
       <hr />
       <Menu theme="light" mode="inline">
         <Menu.Item key="1">
-          <NavLink to="/dashboard">
+        {user?.role == "Lecturer" && (
+            <NavLink to="/dashboard-lecturer">
             <span
               className="icon"
               style={{
@@ -170,6 +171,20 @@ function Sidenav({ color, user }) {
             </span>
             <span className="label">Dashboard</span>
           </NavLink>
+          )}
+          {user?.role == "Student" && (
+            <NavLink to="/dashboard-student">
+            <span
+              className="icon"
+              style={{
+                background: page === "dashboard" ? color : "",
+              }}
+            >
+              {dashboard}
+            </span>
+            <span className="label">Dashboard</span>
+          </NavLink>
+          )}
         </Menu.Item>
         <Menu.Item key="2">
           <NavLink to="/tables">

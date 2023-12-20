@@ -4,11 +4,17 @@ import Home from "./pages/Home";
 import Tables from "./pages/Tables";
 import Billing from "./pages/Billing";
 import Rtl from "./pages/Rtl";
-import ProfileStudent from "./pages/Student/ProfileStudent";
-import ProfileLecturer from "./pages/Lecturer/ProfileLecturer";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Main from "./components/layout/Main";
+
+// Student pages
+import ProfileStudent from "./pages/Student/ProfileStudent";
+import HomeStudent from "./pages/Student/HomeStudent";
+
+// Lecturer pages
+import ProfileLecturer from "./pages/Lecturer/ProfileLecturer";
+import HomeLecturer from "./pages/Lecturer/HomeLecturer";
 
 // import "antd/dist/antd.css";
 import "./assets/styles/main.css";
@@ -55,11 +61,20 @@ function App({ user, dispatch }) {
         <Main>
           <PrivateRoute
             exact
-            path="/dashboard"
-            component={Home}
+            path="/dashboard-lecturer"
+            component={HomeLecturer}
             isAuthenticated={user?.isAuthenticated}
             userRole={user?.role}
             allowedRoles={['Admin', 'Lecturer']}
+            redirectTo="/sign-in"
+          />
+          <PrivateRoute
+            exact
+            path="/dashboard-student"
+            component={HomeStudent}
+            isAuthenticated={user?.isAuthenticated}
+            userRole={user?.role}
+            allowedRoles={['Student']}
             redirectTo="/sign-in"
           />
           <PrivateRoute

@@ -159,15 +159,23 @@ function SignIn({ user, dispatch }) {
             <Layout className="layout-default layout-signin">
                 <Header>
                     <div className="header-col header-brand">
-                        <h5>Muse Dashboard</h5>
+                        <h5>FU Manager Project</h5>
                     </div>
                     <div className="header-col header-nav">
                         <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
                             <Menu.Item key="1">
-                                <Link to="/dashboard">
+                                {user?.role == "Student" && (<Link to="/dashboard-student">
                                     {template}
                                     <span> Dashboard</span>
-                                </Link>
+                                </Link>)}
+                                {user?.role == "Lecturer" && (<Link to="/dashboard-lecturer">
+                                    {template}
+                                    <span> Dashboard</span>
+                                </Link>)}
+                                {user == undefined && (<Link to="#">
+                                    {template}
+                                    <span> Dashboard</span>
+                                </Link>)}
                             </Menu.Item>
                             <Menu.Item key="2">
                                 {user?.role == "Student" && (<Link to="/profile">

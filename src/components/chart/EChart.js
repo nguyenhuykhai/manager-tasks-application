@@ -9,20 +9,20 @@ function EChart() {
 
   const items = [
     {
-      Title: "3,6K",
-      user: "Users",
+      Title: "100",
+      user: "Nhiệm vụ",
     },
     {
-      Title: "2m",
-      user: "Clicks",
+      Title: "50",
+      user: "Hoàn thành",
     },
     {
-      Title: "$772",
-      user: "Sales",
+      Title: "20",
+      user: "Thực hiện",
     },
     {
-      Title: "82",
-      user: "Items",
+      Title: "30",
+      user: "Chưa bắt đầu",
     },
   ];
 
@@ -38,13 +38,12 @@ function EChart() {
         />
       </div>
       <div className="chart-vistior">
-        <Title level={5}>Active Users</Title>
+        <Title level={5}>Tiến độ dự án</Title>
         <Paragraph className="lastweek">
-          than last week <span className="bnb2">+30%</span>
+          so với tuần trước <span className="bnb2">+30%</span>
         </Paragraph>
         <Paragraph className="lastweek">
-          We have created multiple options for you to put together and customise
-          into pixel perfect pages.
+          Biểu đồ thống kê tiến độ dự án của nhóm
         </Paragraph>
         <Row gutter>
           {items.map((v, index) => (

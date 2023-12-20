@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 import {
@@ -20,20 +21,20 @@ import {
 } from "@ant-design/icons";
 import Paragraph from "antd/lib/typography/Paragraph";
 
-import Echart from "../components/chart/EChart";
-import LineChart from "../components/chart/LineChart";
+import Echart from "../../components/chart/EChart";
+import LineChart from "../../components/chart/LineChart";
 
-import ava1 from "../assets/images/logo-shopify.svg";
-import ava2 from "../assets/images/logo-atlassian.svg";
-import ava3 from "../assets/images/logo-slack.svg";
-import ava4 from "../assets/images/logo-spotify.svg";
-import ava5 from "../assets/images/logo-jira.svg";
-import ava6 from "../assets/images/logo-invision.svg";
-import team1 from "../assets/images/team-1.jpg";
-import team2 from "../assets/images/team-2.jpg";
-import team3 from "../assets/images/team-3.jpg";
-import team4 from "../assets/images/team-4.jpg";
-import card from "../assets/images/info-card-1.jpg";
+import ava1 from "../../assets/images/logo-shopify.svg";
+import ava2 from "../../assets/images/logo-atlassian.svg";
+import ava3 from "../../assets/images/logo-slack.svg";
+import ava4 from "../../assets/images/logo-spotify.svg";
+import ava5 from "../../assets/images/logo-jira.svg";
+import ava6 from "../../assets/images/logo-invision.svg";
+import team1 from "../../assets/images/team-1.jpg";
+import team2 from "../../assets/images/team-2.jpg";
+import team3 from "../../assets/images/team-3.jpg";
+import team4 from "../../assets/images/team-4.jpg";
+import card from "../../assets/images/info-card-1.jpg";
 
 function Home() {
   const { Title, Text } = Typography;
@@ -130,32 +131,32 @@ function Home() {
   ];
   const count = [
     {
-      today: "Today’s Sales",
-      title: "$53,000",
-      persent: "+30%",
+      today: "Nhiệm vụ nhóm",
+      title: "100",
+      persent: "/100",
       icon: dollor,
       bnb: "bnb2",
     },
     {
-      today: "Today’s Users",
-      title: "3,200",
-      persent: "+20%",
+      today: "Hoàn thành",
+      title: "50",
+      persent: "/100",
       icon: profile,
       bnb: "bnb2",
     },
     {
-      today: "New Clients",
-      title: "+1,200",
-      persent: "-20%",
+      today: "Đang thực hiện",
+      title: "20",
+      persent: "/100",
       icon: heart,
-      bnb: "redtext",
+      bnb: "yellowtext",
     },
     {
-      today: "New Orders",
-      title: "$13,200",
-      persent: "10%",
+      today: "Chưa bắt đầu",
+      title: "30",
+      persent: "/100",
       icon: cart,
-      bnb: "bnb2",
+      bnb: "redtext",
     },
   ];
 
@@ -317,7 +318,6 @@ function Home() {
     headers: {
       authorization: "authorization-text",
     },
-
     onChange(info) {
       if (info.file.status !== "uploading") {
         console.log(info.file, info.fileList);
@@ -515,7 +515,7 @@ function Home() {
                   xl={10}
                   className="col-img"
                 >
-                  <div className="ant-cret" style={{ textAlign: "left" }}>
+                  <div className="ant-cret text-right">
                     <img src={card} alt="" className="border10" />
                   </div>
                 </Col>
