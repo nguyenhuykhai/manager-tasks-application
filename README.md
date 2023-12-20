@@ -83,6 +83,27 @@ Hỗ Trợ Đa Trình Duyệt: Đảm bảo hoạt động trơn tru trên các 
 
 ---
 
+## Màn hình giao diện | Capture Screenshots
+
+### Dành cho học sinh | Role Student
+
+#### 1. Màn Hình quản lý | Dashboard Page
+<div class="screenshot-container">
+  <img src="https://firebasestorage.googleapis.com/v0/b/nha-trang-ntne.appspot.com/o/FU%20Manager%20Project%2F1.Dashboard.png?alt=media&token=eab1d530-6ec3-4205-9376-f334fe51c7e7" alt="Dashboard Page">
+</div>
+
+#### 2. Màn Hình thông tin cá nhân | Profile Page
+<div class="screenshot-container">
+  <img src="https://firebasestorage.googleapis.com/v0/b/nha-trang-ntne.appspot.com/o/FU%20Manager%20Project%2F2.Student_profile.png?alt=media&token=352fbe08-033f-4593-b6b0-8814c2307e09" alt="Profile Page 1">
+</div>
+
+#### 3. Màn Hình thông tin cá nhân | Profile Page
+<div class="screenshot-container">
+  <img src="https://firebasestorage.googleapis.com/v0/b/nha-trang-ntne.appspot.com/o/FU%20Manager%20Project%2F3.Student_profile.png?alt=media&token=9613495e-335a-477c-8b46-3a3ab74c1eaf" alt="Profile Page 2">
+</div>
+
+---
+
 ## Cấu trúc dự án | Project Structure
 
 ```plaintext
@@ -152,7 +173,6 @@ Hỗ Trợ Đa Trình Duyệt: Đảm bảo hoạt động trơn tru trên các 
 |   |-- App.js
 |   |-- index.js
 ```
-
 ---
 
 ## Công nghệ | Technical
