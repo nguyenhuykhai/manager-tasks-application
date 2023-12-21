@@ -24,12 +24,7 @@ import Paragraph from "antd/lib/typography/Paragraph";
 import Echart from "../../components/chart/EChart";
 import LineChart from "../../components/chart/LineChart";
 
-import ava1 from "../../assets/images/logo-shopify.svg";
-import ava2 from "../../assets/images/logo-atlassian.svg";
-import ava3 from "../../assets/images/logo-slack.svg";
-import ava4 from "../../assets/images/logo-spotify.svg";
-import ava5 from "../../assets/images/logo-jira.svg";
-import ava6 from "../../assets/images/logo-invision.svg";
+import ava1 from "../../assets/images/check-list.png";
 import team1 from "../../assets/images/team-1.jpg";
 import team2 from "../../assets/images/team-2.jpg";
 import team3 from "../../assets/images/team-3.jpg";
@@ -163,9 +158,14 @@ function Home() {
   const list = [
     {
       img: ava1,
-      Title: "Soft UI Shopify Version",
-      bud: "$14,000",
-      progress: <Progress percent={60} size="small" />,
+      Title: (
+        <Tooltip className="tooltip-title" placement="bottom" title="Research Summary: Tóm tắt về sự phát triển của năng lượng nguyên tử và tác động của nó đối với kinh tế và xã hội trên thế giới">
+          Research Summary...
+        </Tooltip>
+      ),
+      predict_date: "15/12/2023",
+      actual_date: "13/12/2023",
+      progress: <Button type="primary" size="medium">Hoàn thành</Button>,
       member: (
         <div className="avatar-group mt-2">
           <Tooltip placement="bottom" title="Ryan Tompson">
@@ -184,10 +184,15 @@ function Home() {
       ),
     },
     {
-      img: ava2,
-      Title: "Progress Track",
-      bud: "$3,000",
-      progress: <Progress percent={10} size="small" />,
+      img: ava1,
+      Title: (
+        <Tooltip className="tooltip-title" placement="bottom" title="Debate Points: Tổng hợp điểm tranh luận về ưu và nhược điểm của năng lượng nguyên tử, tập trung vào tình hình ở Việt Nam">
+          Debate Points...
+        </Tooltip>
+      ),
+      predict_date: "15/12/2023",
+      actual_date: "15/12/2023",
+      progress: <Button type="primary" size="medium">Hoàn thành</Button>,
       member: (
         <div className="avatar-group mt-2">
           <Tooltip placement="bottom" title="Ryan Tompson">
@@ -200,10 +205,15 @@ function Home() {
       ),
     },
     {
-      img: ava3,
-      Title: "Fix Platform Errors",
-      bud: "Not Set",
-      progress: <Progress percent={100} size="small" status="active" />,
+      img: ava1,
+      Title: (
+        <Tooltip className="tooltip-title" placement="bottom" title="Expert Interview: Phỏng vấn chuyên gia về năng lượng nguyên tử và viết bài báo về ý kiến của họ">
+        Expert Interview...
+        </Tooltip>
+      ),
+      predict_date: "15/12/2023",
+      actual_date: "17/12/2023",
+      progress: <Button type="primary" size="medium" status="active">Hoàn thành</Button>,
       member: (
         <div className="avatar-group mt-2">
           <Tooltip placement="bottom" title="Ryan Tompson">
@@ -219,10 +229,15 @@ function Home() {
       ),
     },
     {
-      img: ava4,
-      Title: "Launch new Mobile App",
-      bud: "$20,600",
-      progress: <Progress percent={100} size="small" status="active" />,
+      img: ava1,
+      Title: (
+        <Tooltip className="tooltip-title" placement="bottom" title="Community Awareness Post: Tạo nội dung truyền thông như poster hoặc video để tăng cường nhận thức cộng đồng về năng lượng nguyên tử">
+          Community Awareness Post...
+        </Tooltip>
+      ),
+      predict_date: "15/12/2023",
+      actual_date: "15/12/2023",
+      progress: <Button type="primary" size="medium" status="active">Hoàn thành</Button>,
       member: (
         <div className="avatar-group mt-2">
           <Tooltip placement="bottom" title="Ryan Tompson">
@@ -235,10 +250,15 @@ function Home() {
       ),
     },
     {
-      img: ava5,
-      Title: "Add the New Landing Page",
-      bud: "$4,000",
-      progress: <Progress percent={80} size="small" />,
+      img: ava1,
+      Title: (
+        <Tooltip className="tooltip-title" placement="bottom" title="Policy Suggestions: Đề xuất một số chính sách mới hoặc cải tiến liên quan đến sử dụng năng lượng nguyên tử ở Việt Nam">
+        Policy Suggestions...
+        </Tooltip>
+      ),
+      predict_date: "15/12/2023",
+      actual_date: "14/12/2023",
+      progress: <Button type="primary" size="medium">Hoàn thành</Button>,
       member: (
         <div className="avatar-group mt-2">
           <Tooltip placement="bottom" title="Ryan Tompson">
@@ -258,16 +278,16 @@ function Home() {
     },
 
     {
-      img: ava6,
-      Title: "Redesign Online Store",
-      bud: "$2,000",
+      img: ava1,
+      Title: (
+        <Tooltip className="tooltip-title" placement="bottom" title="Historical Impact Brief: Tổng hợp ảnh hưởng lịch sử của sự phát triển năng lượng nguyên tử đối với các quốc gia, với tập trung vào Việt Nam">
+        Historical Impact Brief...
+        </Tooltip>
+      ),
+      predict_date: "30/12/2023",
+      actual_date: "",
       progress: (
-        <Progress
-          percent={100}
-          size="small"
-          status="exception"
-          format={() => "Cancel"}
-        />
+        <Button type="primary" danger size="medium">Chưa bắt đầu</Button>
       ),
       member: (
         <div className="avatar-group mt-2">
@@ -284,30 +304,36 @@ function Home() {
 
   const timelineList = [
     {
-      title: "$2,400 - Redesign store",
-      time: "09 JUN 7:20 PM",
+      sprint_name: "Sprint 1: Atomic Evolution",
+      sprint_description: "Khám phá lịch sử và công nghệ dẫn đến thời đại nguyên tử. Phân tích tác động toàn cầu và các sự kiện quan trọng trong phát triển hạt nhân",
+      finish_date: "30 OCT 07:00 PM",
       color: "green",
     },
     {
-      title: "New order #3654323",
-      time: "08 JUN 12:20 PM",
+      sprint_name: "Sprint 2: Reactor Realities",
+      sprint_description: "Nghiên cứu tình trạng hiện tại của năng lượng hạt nhân toàn cầu. Xem xét biện pháp an toàn, thách thức và các đổi mới trong công nghệ lò phản ứng",
+      finish_date: "15 NOV 07:00 PM",
       color: "green",
     },
     {
-      title: "Company server payments",
-      time: "04 JUN 3:10 PM",
+      sprint_name: "Sprint 3: Fallout Factors",
+      sprint_description: "Đào sâu vào hậu quả môi trường và địa chính trị của hoạt động hạt nhân. Đánh giá các rủi ro, khuôn khổ quy định và hợp tác quốc tế",
+      finish_date: "30 DEC 07:00 PM",
     },
     {
-      title: "New card added for order #4826321",
-      time: "02 JUN 2:45 PM",
+      sprint_name: "Sprint 4: Fusion Futures",
+      sprint_description: "Khám phá nghiên cứu về hợp nhất hạt nhân và tiềm năng làm nguồn năng lượng bền vững. Đánh giá thách thức và bước đột phá",
+      finish_date: "15 JAN 07:00 PM",
     },
     {
-      title: "Unlock folders for development",
-      time: "18 MAY 1:30 PM",
+      sprint_name: "Sprint 5: Atomic Advocacy",
+      sprint_description: "Phát triển chiến lược để tăng cường nhận thức và giáo dục công dân về năng lượng hạt nhân. Tạo kế hoạch truyền thông và tư duy liên lạc",
+      finish_date: "30 FEB 07:00 PM",
     },
     {
-      title: "New order #46282344",
-      time: "14 MAY 3:30 PM",
+      sprint_name: "Sprint 6: Policy and Power",
+      sprint_description: "Xem xét và đề xuất khuôn khổ để sử dụng năng lượng hạt nhân một cách có trách nhiệm. Xem xét các tác động kinh tế, môi trường và đạo đức",
+      finish_date: "15 MAR 07:00 PM",
       color: "gray",
     },
   ];
@@ -381,17 +407,16 @@ function Home() {
             <Card bordered={false} className="criclebox cardbody h-full">
               <div className="project-ant">
                 <div>
-                  <Title level={5}>Projects</Title>
+                  <Title level={5}>Nhiệm vụ</Title>
                   <Paragraph className="lastweek">
-                    done this month<span className="blue">40%</span>
+                    hoàn thành trong sprint này<span className="blue">40%</span>
                   </Paragraph>
                 </div>
                 <div className="ant-filtertabs">
                   <div className="antd-pro-pages-dashboard-analysis-style-salesExtra">
                     <Radio.Group onChange={onChange} defaultValue="a">
-                      <Radio.Button value="a">ALL</Radio.Button>
-                      <Radio.Button value="b">ONLINE</Radio.Button>
-                      <Radio.Button value="c">STORES</Radio.Button>
+                      <Radio.Button value="a">TẤT CẢ</Radio.Button>
+                      <Radio.Button value="b">CÁ NHÂN</Radio.Button>
                     </Radio.Group>
                   </div>
                 </div>
@@ -400,10 +425,11 @@ function Home() {
                 <table className="width-100">
                   <thead>
                     <tr>
-                      <th>COMPANIES</th>
-                      <th>MEMBERS</th>
-                      <th>BUDGET</th>
-                      <th>COMPLETION</th>
+                      <th>NỘI DUNG</th>
+                      <th>NGƯỜI ĐẢM NHIỆM</th>
+                      <th>NGÀY DỰ KIẾN</th>
+                      <th>NGÀY THỰC TẾ</th>
+                      <th>TRẠNG THÁI</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -422,7 +448,12 @@ function Home() {
                         <td>{d.member}</td>
                         <td>
                           <span className="text-xs font-weight-bold">
-                            {d.bud}{" "}
+                            {d.predict_date}{" "}
+                          </span>
+                        </td>
+                        <td>
+                          <span className="text-xs font-weight-bold">
+                            {d?.actual_date == "" ? "Not yet" : d?.actual_date}{" "}
                           </span>
                         </td>
                         <td>
@@ -440,7 +471,7 @@ function Home() {
                     className="ant-full-box"
                     icon={<ToTopOutlined />}
                   >
-                    <span className="click">Click to Upload</span>
+                    <span className="click">Thêm nhiệm vụ mới</span>
                   </Button>
                 </Upload>
               </div>
@@ -449,10 +480,10 @@ function Home() {
           <Col xs={24} sm={24} md={12} lg={12} xl={8} className="mb-24">
             <Card bordered={false} className="criclebox h-full">
               <div className="timeline-box">
-                <Title level={5}>Orders History</Title>
-                <Paragraph className="lastweek" style={{ marginBottom: 24 }}>
+                <Title level={5}>Sprint Schedule</Title>
+                {/* <Paragraph className="lastweek" style={{ marginBottom: 24 }}>
                   this month <span className="bnb2">20%</span>
-                </Paragraph>
+                </Paragraph> */}
 
                 <Timeline
                   pending="Recording..."
@@ -461,8 +492,9 @@ function Home() {
                 >
                   {timelineList.map((t, index) => (
                     <Timeline.Item color={t.color} key={index}>
-                      <Title level={5}>{t.title}</Title>
-                      <Text>{t.time}</Text>
+                      <Title level={5}>{t.sprint_name}</Title>
+                      <Title level={5}>{t.sprint_description}</Title>
+                      <Text>{t.finish_date}</Text>
                     </Timeline.Item>
                   ))}
                 </Timeline>
@@ -492,16 +524,15 @@ function Home() {
                 >
                   <div className="h-full col-content p-20">
                     <div className="ant-muse">
-                      <Text>Built by developers</Text>
-                      <Title level={5}>FU Manager Project Design</Title>
+                      <Text>30 DEC 07:00 PM</Text>
+                      <Title level={5}>Sprint 3: Fallout Factors</Title>
                       <Paragraph className="lastweek mb-36">
-                        From colors, cards, typography to complex elements, you
-                        will find the full documentation.
+                      Đào sâu vào hậu quả môi trường và địa chính trị của hoạt động hạt nhân. Đánh giá các rủi ro, khuôn khổ quy định và hợp tác quốc tế
                       </Paragraph>
                     </div>
                     <div className="card-footer">
                       <a className="icon-move-right" href="#pablo">
-                        Read More
+                        Xem thêm
                         {<RightOutlined />}
                       </a>
                     </div>
@@ -527,15 +558,15 @@ function Home() {
             <Card bordered={false} className="criclebox card-info-2 h-full">
               <div className="gradent h-full col-content">
                 <div className="card-content">
-                  <Title level={5}>Work with the best</Title>
+                  <Text>SPRINT TIẾP THEO</Text>
+                  <Title level={5}>Sprint 4: Fusion Futures</Title>
                   <p>
-                    Wealth creation is an evolutionarily recent positive-sum
-                    game. It is all about who take the opportunity first.
+                  Khám phá nghiên cứu về hợp nhất hạt nhân và tiềm năng làm nguồn năng lượng bền vững. Đánh giá thách thức và bước đột phá
                   </p>
                 </div>
                 <div className="card-footer">
                   <a className="icon-move-right" href="#pablo">
-                    Read More
+                    Xem thêm
                     <RightOutlined />
                   </a>
                 </div>

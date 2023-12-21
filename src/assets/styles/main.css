@@ -1150,6 +1150,10 @@ span.blue {
   cursor: pointer;
 }
 
+.tooltip-title {
+  cursor: pointer;
+}
+
 .avatar-group .tootip-img + .tootip-img {
   margin-left: -10px;
 }
@@ -1661,7 +1665,7 @@ ul.ant-menu.ant-menu-root.ant-menu-inline.ant-menu-light.left-nav
 }
 
 .avatar-sm {
-  width: 25px;
+  width: 2.5rem;
 }
 
 .ant-progress-project {

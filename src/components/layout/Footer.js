@@ -11,12 +11,12 @@ function Footer() {
       <Row className="just">
         <Col xs={24} md={12} lg={12}>
           <div className="copyright">
-            © 2021, made with
+            Liên hệ với chúng tôi
             {<HeartFilled />} by
             <a href="#pablo" className="font-weight-bold" target="_blank">
-              Creative Tim
+            FU Manager Project
             </a>
-            for a better web.
+            ứng dụng quản lý dự án
           </div>
         </Col>
         <Col xs={24} md={12} lg={12}>
@@ -28,7 +28,7 @@ function Footer() {
                   className="nav-link text-muted"
                   target="_blank"
                 >
-                  Creative Tim
+                  FU Manager Project
                 </a>
               </li>
               <li className="nav-item">
@@ -37,7 +37,7 @@ function Footer() {
                   className="nav-link text-muted"
                   target="_blank"
                 >
-                  About Us
+                  Giới thiệu
                 </a>
               </li>
               <li className="nav-item">
