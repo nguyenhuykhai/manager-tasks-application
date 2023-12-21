@@ -87,7 +87,7 @@ Hỗ Trợ Đa Trình Duyệt: Đảm bảo hoạt động trơn tru trên các 
 
 ### Dành cho học sinh | Role Student
 
-#### 1. Màn Hình quản lý | Dashboard Page
+#### 1. Màn hình quản lý | Dashboard Page
 <div class="screenshot-container">
   <img src="https://firebasestorage.googleapis.com/v0/b/nha-trang-ntne.appspot.com/o/FU%20Manager%20Project%2F1.Dashboard.png?alt=media&token=a1e481fc-f0a4-4f28-9814-0508a3d48ba0" alt="Dashboard Page 1.1">
 </div>
@@ -100,12 +100,12 @@ Hỗ Trợ Đa Trình Duyệt: Đảm bảo hoạt động trơn tru trên các 
   <img src="https://firebasestorage.googleapis.com/v0/b/nha-trang-ntne.appspot.com/o/FU%20Manager%20Project%2F1_3.Dashboard.png?alt=media&token=afcec8c4-4149-424b-bf10-f5d8476cc254" alt="Dashboard Page 1.3">
 </div>
 
-#### 2. Màn Hình thông tin cá nhân | Profile Page
+#### 2. Màn hình thông tin cá nhân | Profile Page
 <div class="screenshot-container">
   <img src="https://firebasestorage.googleapis.com/v0/b/nha-trang-ntne.appspot.com/o/FU%20Manager%20Project%2F2.Student_profile.png?alt=media&token=352fbe08-033f-4593-b6b0-8814c2307e09" alt="Profile Page 2">
 </div>
 
-#### 3. Màn Hình thông tin cá nhân | Profile Page
+#### 3. Màn hình thông tin cá nhân | Profile Page
 <div class="screenshot-container">
   <img src="https://firebasestorage.googleapis.com/v0/b/nha-trang-ntne.appspot.com/o/FU%20Manager%20Project%2F3.Student_profile.png?alt=media&token=9613495e-335a-477c-8b46-3a3ab74c1eaf" alt="Profile Page 3">
 </div>
