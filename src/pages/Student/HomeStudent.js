@@ -232,7 +232,7 @@ function Home() {
       img: ava1,
       Title: (
         <Tooltip className="tooltip-title" placement="bottom" title="Community Awareness Post: Tạo nội dung truyền thông như poster hoặc video để tăng cường nhận thức cộng đồng về năng lượng nguyên tử">
-          Community Awareness Post...
+          Community Aware...
         </Tooltip>
       ),
       predict_date: "15/12/2023",
@@ -281,7 +281,7 @@ function Home() {
       img: ava1,
       Title: (
         <Tooltip className="tooltip-title" placement="bottom" title="Historical Impact Brief: Tổng hợp ảnh hưởng lịch sử của sự phát triển năng lượng nguyên tử đối với các quốc gia, với tập trung vào Việt Nam">
-        Historical Impact Brief...
+        Historical Impact...
         </Tooltip>
       ),
       predict_date: "30/12/2023",
@@ -436,14 +436,9 @@ function Home() {
                     {list.map((d, index) => (
                       <tr key={index}>
                         <td>
-                          <h6>
-                            <img
-                              src={d.img}
-                              alt=""
-                              className="avatar-sm mr-10"
-                            />{" "}
+                          <p>
                             {d.Title}
-                          </h6>
+                          </p>
                         </td>
                         <td>{d.member}</td>
                         <td>
