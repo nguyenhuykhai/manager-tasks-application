@@ -1,34 +1,29 @@
+import React from 'react'
 
-
-import { useState, useEffect } from "react";
-import { useLogout } from "../../services/authService"
-import { connect } from 'react-redux';
-import { logout as logoutAction } from "../../actions/authActions" 
-
+// Import Ant Design
 import {
-  Row,
-  Col,
-  Breadcrumb,
-  Badge,
-  Dropdown,
-  Button,
-  List,
-  Avatar,
-  Input,
-  Drawer,
-  Typography,
-  Switch,
+    Row,
+    Col,
+    Breadcrumb,
+    Badge,
+    Dropdown,
+    Button,
+    List,
+    Avatar,
+    Input,
+    Drawer,
+    Typography,
+    Switch,
 } from "antd";
 
 import {
-  SearchOutlined,
-  StarOutlined,
-  TwitterOutlined,
-  FacebookFilled,
-  UserOutlined
+    SearchOutlined,
+    StarOutlined,
+    TwitterOutlined,
+    FacebookFilled,
+    UserOutlined
 } from "@ant-design/icons";
 
-import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import avatar from "../../assets/images/team-2.jpg";
 
@@ -243,183 +238,114 @@ const setting = [
   </svg>,
 ];
 
-function Header({
-  placement,
-  name,
-  subName,
-  onPress,
-  handleSidenavColor,
-  handleSidenavType,
-  handleFixedNavbar,
-  user,
-  dispatch
-}) {
-  const { Title, Text } = Typography;
-  const { logout } = useLogout()
-  const [visible, setVisible] = useState(false);
-  const [sidenavType, setSidenavType] = useState("transparent");
+function UpdateProfile() {
+    const { Title, Text } = Typography;
+    const [visible, setVisible] = useState(false);
+    const [sidenavType, setSidenavType] = useState("transparent");
 
-  useEffect(() => window.scrollTo(0, 0));
+    useEffect(() => window.scrollTo(0, 0));
 
-  const showDrawer = () => setVisible(true);
-  const hideDrawer = () => setVisible(false);
-
-  const handleLogout = () => {
-    logout()
-    dispatch(logoutAction())
-  }
-
-  return (
-    <>
-      <div className="setting-drwer" onClick={showDrawer}>
-        {setting}
-      </div>
-      <Row gutter={[24, 0]}>
-        <Col span={24} md={6}>
-          <Breadcrumb>
-            <Breadcrumb.Item>
-              <NavLink to="/">Pages</NavLink>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item style={{ textTransform: "capitalize" }}>
-              {name.replace("/", "")}
-            </Breadcrumb.Item>
-          </Breadcrumb>
-          <div className="ant-page-header-heading">
-            <span
-              className="ant-page-header-heading-title"
-              style={{ textTransform: "capitalize" }}
-            >
-              {subName.replace("/", "")}
-            </span>
-          </div>
-        </Col>
-        <Col span={24} md={18} className="header-control">
-          <Badge size="small" count={4}>
-            <Dropdown overlay={menu} trigger={["click"]}>
-              <a
-                href="#pablo"
-                className="ant-dropdown-link"
-                onClick={(e) => e.preventDefault()}
-              >
-                {bell}
-              </a>
-            </Dropdown>
-          </Badge>
-          <Button type="link" onClick={showDrawer}>
-          <UserOutlined />
-          </Button>
-          <Button
-            type="link"
-            className="sidebar-toggler"
-            onClick={() => onPress()}
-          >
-            {toggler}
-          </Button>
-          <Drawer
-            className="settings-drawer"
-            mask={true}
-            width={360}
-            onClose={hideDrawer}
-            placement={placement}
-            visible={visible}
-          >
-            <div layout="vertical">
-              <div className="header-top">
-                <Title level={4}>
-                  {user?.name || user?.student_name}
-                  <Text className="subtitle">{user?.email}</Text>
-                </Title>
-              </div>
-
-              <div className="sidebar-color">
-                <Title level={5}>Đổi màu giao diện thanh điều hướng</Title>
-                <div className="theme-color mb-2">
-                  <ButtonContainer>
-                    <Button
-                      type="primary"
-                      onClick={() => handleSidenavColor("#1890ff")}
-                    >
-                      1
-                    </Button>
-                    <Button
-                      type="success"
-                      onClick={() => handleSidenavColor("#52c41a")}
-                    >
-                      1
-                    </Button>
-                    <Button
-                      type="danger"
-                      onClick={() => handleSidenavColor("#d9363e")}
-                    >
-                      1
-                    </Button>
-                    <Button
-                      type="yellow"
-                      onClick={() => handleSidenavColor("#fadb14")}
-                    >
-                      1
-                    </Button>
-
-                    <Button
-                      type="black"
-                      onClick={() => handleSidenavColor("#111")}
-                    >
-                      1
-                    </Button>
-                  </ButtonContainer>
-                </div>
-
-                <div className="sidebarnav-color mb-2">
-                  <Title level={5}>Đổ bóng thanh điều hướng</Title>
-                  <Text>Chọn loại đổ bóng</Text>
-                  <ButtonContainer className="trans">
-                    <Button
-                      type={sidenavType === "transparent" ? "primary" : "white"}
-                      onClick={() => {
-                        handleSidenavType("transparent");
-                        setSidenavType("transparent");
-                      }}
-                    >
-                      TRONG SUỐT
-                    </Button>
-                    <Button
-                      type={sidenavType === "white" ? "primary" : "white"}
-                      onClick={() => {
-                        handleSidenavType("#fff");
-                        setSidenavType("white");
-                      }}
-                    >
-                      TRẮNG
-                    </Button>
-                  </ButtonContainer>
-                </div>
-                <div className="fixed-nav mb-2">
-                  <Title level={5}>Thanh điều hướng bất biến</Title>
-                  <Switch onChange={(e) => handleFixedNavbar(e)} />
-                </div>
-                <div className="ant-docment">
-                  <ButtonContainer>
-                    <Button onClick={() => handleLogout()} type="primary" size="medium">
-                      Đăng xuất
-                    </Button>
-                  </ButtonContainer>
-                </div>
-              </div>
+    const showDrawer = () => setVisible(true);
+    const hideDrawer = () => setVisible(false);
+    return (
+        <>
+            <div className="setting-drwer" onClick={showDrawer}>
+                {setting}
             </div>
-          </Drawer>
-          <Input
-            className="header-search"
-            placeholder="Type here..."
-            prefix={<SearchOutlined />}
-          />
-        </Col>
-      </Row>
-    </>
-  );
+            <Drawer
+                className="settings-drawer"
+                mask={true}
+                width={360}
+                onClose={hideDrawer}
+                placement={placement}
+                visible={visible}
+            >
+                <div layout="vertical">
+                    <div className="header-top">
+                        <Title level={4}>
+                            {user?.name || user?.student_name}
+                            <Text className="subtitle">{user?.email}</Text>
+                        </Title>
+                    </div>
+
+                    <div className="sidebar-color">
+                        <Title level={5}>Đổi màu giao diện thanh điều hướng</Title>
+                        <div className="theme-color mb-2">
+                            <ButtonContainer>
+                                <Button
+                                    type="primary"
+                                    onClick={() => handleSidenavColor("#1890ff")}
+                                >
+                                    1
+                                </Button>
+                                <Button
+                                    type="success"
+                                    onClick={() => handleSidenavColor("#52c41a")}
+                                >
+                                    1
+                                </Button>
+                                <Button
+                                    type="danger"
+                                    onClick={() => handleSidenavColor("#d9363e")}
+                                >
+                                    1
+                                </Button>
+                                <Button
+                                    type="yellow"
+                                    onClick={() => handleSidenavColor("#fadb14")}
+                                >
+                                    1
+                                </Button>
+
+                                <Button
+                                    type="black"
+                                    onClick={() => handleSidenavColor("#111")}
+                                >
+                                    1
+                                </Button>
+                            </ButtonContainer>
+                        </div>
+
+                        <div className="sidebarnav-color mb-2">
+                            <Title level={5}>Đổ bóng thanh điều hướng</Title>
+                            <Text>Chọn loại đổ bóng</Text>
+                            <ButtonContainer className="trans">
+                                <Button
+                                    type={sidenavType === "transparent" ? "primary" : "white"}
+                                    onClick={() => {
+                                        handleSidenavType("transparent");
+                                        setSidenavType("transparent");
+                                    }}
+                                >
+                                    TRONG SUỐT
+                                </Button>
+                                <Button
+                                    type={sidenavType === "white" ? "primary" : "white"}
+                                    onClick={() => {
+                                        handleSidenavType("#fff");
+                                        setSidenavType("white");
+                                    }}
+                                >
+                                    TRẮNG
+                                </Button>
+                            </ButtonContainer>
+                        </div>
+                        <div className="fixed-nav mb-2">
+                            <Title level={5}>Thanh điều hướng bất biến</Title>
+                            <Switch onChange={(e) => handleFixedNavbar(e)} />
+                        </div>
+                        <div className="ant-docment">
+                            <ButtonContainer>
+                                <Button onClick={() => handleLogout()} type="primary" size="medium">
+                                    Đăng xuất
+                                </Button>
+                            </ButtonContainer>
+                        </div>
+                    </div>
+                </div>
+            </Drawer>
+        </>
+    )
 }
-const mapDispatchToProps = dispatch => {
-  return {
-      dispatch
-  };
-};
-export default connect(mapDispatchToProps)(Header);
+
+export default UpdateProfile
