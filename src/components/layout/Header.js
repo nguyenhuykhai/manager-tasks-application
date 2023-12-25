@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useLogout } from "../../services/authService"
 import { connect } from 'react-redux';
-import { logout as logoutAction } from "../../actions/authActions" 
+import { logout as logoutAction } from "../../actions/authActions"
 
 import {
   Row,
@@ -18,6 +18,7 @@ import {
   Drawer,
   Typography,
   Switch,
+  Grid,
 } from "antd";
 
 import {
@@ -306,7 +307,7 @@ function Header({
             </Dropdown>
           </Badge>
           <Button type="link" onClick={showDrawer}>
-          <UserOutlined />
+            <UserOutlined />
           </Button>
           <Button
             type="link"
@@ -325,10 +326,19 @@ function Header({
           >
             <div layout="vertical">
               <div className="header-top">
-                <Title level={4}>
-                  {user?.name || user?.student_name}
-                  <Text className="subtitle">{user?.email}</Text>
-                </Title>
+                <Row>
+                  <Col span={4}>
+                    <div>
+                      <img src={user?.picture} alt="" className="border10" />
+                    </div>
+                  </Col>
+                  <Col span={20}>
+                    <Title level={4} style={{ paddingLeft: '8px' }}>
+                    {user?.name || user?.student_name}
+                    <Text className="subtitle">{user?.email}</Text>
+                    </Title>
+                  </Col>
+                </Row>
               </div>
 
               <div className="sidebar-color">
@@ -419,7 +429,7 @@ function Header({
 }
 const mapDispatchToProps = dispatch => {
   return {
-      dispatch
+    dispatch
   };
 };
 export default connect(mapDispatchToProps)(Header);

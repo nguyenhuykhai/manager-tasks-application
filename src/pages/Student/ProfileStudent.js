@@ -9,6 +9,9 @@ import useGroupService from "../../services/groupService";
 // Import Action
 import { fetchGroupsSuccess, fetchGroupDetailSuccess } from '../../actions/groupActions';
 
+// Import component
+import UpdateProfile from '../../components/component/UpdateProfile'
+
 // Antd imports
 import {
   Row,
@@ -263,7 +266,7 @@ function ProfileStudent({ user, groups, selectedGroup, dispatch }) {
             bordered={false}
             title={<h6 className="font-semibold m-0">Thông tin cá nhân</h6>}
             className="header-solid h-full card-profile-information"
-            extra={<Button type="link">{pencil}</Button>}
+            extra={<UpdateProfile />}
             bodyStyle={{ paddingTop: 0, paddingBottom: 16 }}
           >
             <p className="text-dark">
