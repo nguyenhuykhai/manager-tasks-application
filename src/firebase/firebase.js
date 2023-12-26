@@ -1,13 +1,15 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from 'firebase/storage';
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBEFIdzSRpFi8xvNq_xW7cdGrgUYAxDQEY",
-  authDomain: "imageuploaddb-c7d98.firebaseapp.com",
-  projectId: "imageuploaddb-c7d98",
-  storageBucket: "imageuploaddb-c7d98.appspot.com",
-  messagingSenderId: "150465952860",
-  appId: "1:150465952860:web:03dd5bf5d383e71bc1ba99"
+    apiKey: "AIzaSyCPCxdnlURoz1n8TDjQdXY1iprn82K4HLs",
+    authDomain: "nha-trang-ntne.firebaseapp.com",
+    projectId: "nha-trang-ntne",
+    storageBucket: "nha-trang-ntne.appspot.com",
+    messagingSenderId: "422044912492",
+    appId: "1:422044912492:web:2e34eada0c4670e1c0c149",
+    measurementId: "G-KQ4B9SLRN9"
 };
 
 const app = initializeApp(firebaseConfig);
