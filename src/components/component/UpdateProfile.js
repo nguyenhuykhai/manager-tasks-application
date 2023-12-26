@@ -143,11 +143,25 @@ function UpdateProfile({ user, dispatch }) {
           errors: ['Invalid file type. Please upload an image.'],
         },
       ]);
-      return
+      return;
     }
-    form.setFields([{name: 'picture', errors: undefined}])
-    setFileList(newFileList)
+  
+    // Clear the error message for the 'picture' field
+    form.setFields([{ name: 'picture', errors: undefined }]);
+  
+    // Update the fileList and modify the status and error properties
+    setFileList((prevFileList) => {
+      if (newFileList.length > 0) {
+        const updatedFileList = [...newFileList];
+        updatedFileList[0].status = 'done';
+        updatedFileList[0].error = undefined;
+        return updatedFileList;
+      } else {
+        return newFileList;
+      }
+    });
   };
+  
   const uploadButton = (
     <div>
       <PlusOutlined />
