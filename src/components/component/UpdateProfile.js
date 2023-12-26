@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // Import firebase
 import { imageDb } from '../../firebase/firebase';
 import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
-import { v4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 // Import Ant Design
 import {
@@ -31,7 +31,7 @@ import {
   message
 } from "antd";
 
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { ConsoleSqlOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { PlusOutlined } from '@ant-design/icons';
 
 import styled from "styled-components";
@@ -79,6 +79,7 @@ const pencil = [
   </svg>,
 ];
 
+// CSS customize tag
 const customizeRequiredMark = (label, { required }) => (
   <>
     {required ? <Tag color="error">Required</Tag> : <Tag color="warning">optional</Tag>}
@@ -86,6 +87,7 @@ const customizeRequiredMark = (label, { required }) => (
   </>
 );
 
+// Logic for convert file to image preview
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -109,9 +111,33 @@ function UpdateProfile({ user, dispatch }) {
 
   form.setFieldsValue(user);
 
-  const onFinish = (values) => {
-    console.log(values);
+  const onFinish = async () => {
+    try {
+      // Validate the form before submitting
+      await form.validateFields();
+
+      // Submit other form values to the server
+      const values = await form.getFieldsValue();
+      console.log('Form values:', values);
+
+      // Handle image upload
+      if (fileList.length > 0) {
+        const file = fileList[0];
+        const storageRef = ref(imageDb, `images/${uuidv4()}_${file.name}`);
+        
+        await uploadBytes(storageRef, file.originFileObj);
+
+        // Get download URL after successful upload
+        const imageUrl = await getDownloadURL(storageRef);
+
+        // Continue with any additional logic or save the imageUrl as needed
+        console.log('Download URL:', imageUrl);
+      }
+    } catch (error) {
+      console.error('Form validation error:', error);
+    }
   };
+
   const onReset = () => {
     form.setFieldsValue(user);
   };
@@ -119,6 +145,8 @@ function UpdateProfile({ user, dispatch }) {
     form.resetFields();
   };
 
+
+  // Handle validate and display image preview
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
@@ -145,10 +173,10 @@ function UpdateProfile({ user, dispatch }) {
       ]);
       return;
     }
-  
     // Clear the error message for the 'picture' field
     form.setFields([{ name: 'picture', errors: undefined }]);
-  
+    form.setFieldsValue({ picture: file });
+
     // Update the fileList and modify the status and error properties
     setFileList((prevFileList) => {
       if (newFileList.length > 0) {
@@ -161,7 +189,8 @@ function UpdateProfile({ user, dispatch }) {
       }
     });
   };
-  
+
+  // CSS display loading status
   const uploadButton = (
     <div>
       <PlusOutlined />
@@ -174,33 +203,6 @@ function UpdateProfile({ user, dispatch }) {
       </div>
     </div>
   );
-
-  // Logic Firebase
-  const [img, setImg] = useState('')
-  const [imgUrl, setImgUrl] = useState([])
-
-  const handleClick = () => {
-    if (img !== null) {
-      const imgRef = ref(imageDb, `files/${v4()}`)
-      uploadBytes(imgRef, img).then(value => {
-        console.log(value)
-        getDownloadURL(value.ref).then(url => {
-          setImgUrl(data => [...data, url])
-        })
-      })
-    }
-  }
-
-  useEffect(() => {
-    listAll(ref(imageDb, "files")).then(imgs => {
-      console.log(imgs)
-      imgs.items.forEach(val => {
-        getDownloadURL(val).then(url => {
-          setImgUrl(data => [...data, url])
-        })
-      })
-    })
-  }, [])
 
   return (
     <>
