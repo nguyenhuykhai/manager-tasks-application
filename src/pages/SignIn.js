@@ -123,7 +123,7 @@ function SignIn({ user, dispatch }) {
     const history = useHistory()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { login, error, isLoading } = useLogin()
+    const { loginSendAPI, login, error, isLoading } = useLogin()
     const onFinish = (values) => {
         handleSubmit(email, password)
     };
@@ -132,27 +132,45 @@ function SignIn({ user, dispatch }) {
         console.log("Failed:", errorInfo);
     };
 
-    const handleSubmit = async (email, password) => {
-        const userData = await login(email, password);
-        if (userData != null) {
-            dispatch(loginSuccess(userData));
-            showAlert("success", "Đăng nhập thành công");
-            switch (userData?.role) {
-                case "Student":
-                    history.push("/profile");
-                    break;
-                case "Lecturer":
-                    history.push("/profile-lecturer");
-                    break;
-                case "Admin":
-                    break;
-                default:
-                    break;
+    const handleSubmit = (email, password) => {
+        const handleRedirect = (userData) => {
+            if (userData != null) {
+                dispatch(loginSuccess(userData));
+                showAlert("success", "Đăng nhập thành công");
+                switch (userData?.role) {
+                    case "ROLE_STUDENT":
+                        history.push("/profile");
+                        break;
+                    case "ROLE_LECTURER":
+                        history.push("/profile-lecturer");
+                        break;
+                    case "ROLE_ADMIN":
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                showAlert("error", "Đăng nhập thất bại");
             }
-        } else {
-            showAlert("error", "Đăng nhập thất bại");
+        };
+    
+        if (password === 'admin') { // Key for login only Front-end
+            login(email, password)
+                .then(handleRedirect)
+                .catch((error) => {
+                    console.error('An error occurred:', error);
+                    showAlert('error', 'Đăng nhập thất bại');
+                });
+        } else { // Logic login normal, send API
+            loginSendAPI(email, password)
+                .then(handleRedirect)
+                .catch((error) => {
+                    console.error('An error occurred:', error);
+                    showAlert('error', 'Đăng nhập thất bại');
+                });
         }
-    }
+    };
+    
 
     return (
         <>
@@ -164,11 +182,11 @@ function SignIn({ user, dispatch }) {
                     <div className="header-col header-nav">
                         <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
                             <Menu.Item key="1">
-                                {user?.role == "Student" && (<Link to="/dashboard-student">
+                                {user?.role == "ROLE_STUDENT" && (<Link to="/dashboard-student">
                                     {template}
                                     <span> Dashboard</span>
                                 </Link>)}
-                                {user?.role == "Lecturer" && (<Link to="/dashboard-lecturer">
+                                {user?.role == "ROLE_LECTURER" && (<Link to="/dashboard-lecturer">
                                     {template}
                                     <span> Dashboard</span>
                                 </Link>)}
@@ -178,11 +196,11 @@ function SignIn({ user, dispatch }) {
                                 </Link>)}
                             </Menu.Item>
                             <Menu.Item key="2">
-                                {user?.role == "Student" && (<Link to="/profile">
+                                {user?.role == "ROLE_STUDENT" && (<Link to="/profile">
                                     {profile}
                                     <span>Profile</span>
                                 </Link>)}
-                                {user?.role == "Lecturer" && (<Link to="/profile-lecturer">
+                                {user?.role == "ROLE_LECTURER" && (<Link to="/profile-lecturer">
                                     {profile}
                                     <span>Profile</span>
                                 </Link>)}

@@ -159,7 +159,7 @@ function Sidenav({ color, user }) {
       <hr />
       <Menu theme="light" mode="inline">
         <Menu.Item key="1">
-        {user?.role == "Lecturer" && (
+        {user?.role == "ROLE_LECTURER" && (
             <NavLink to="/dashboard-lecturer">
             <span
               className="icon"
@@ -172,7 +172,7 @@ function Sidenav({ color, user }) {
             <span className="label">Dashboard</span>
           </NavLink>
           )}
-          {user?.role == "Student" && (
+          {user?.role == "ROLE_STUDENT" && (
             <NavLink to="/dashboard-student">
             <span
               className="icon"
@@ -229,7 +229,7 @@ function Sidenav({ color, user }) {
           Account Pages
         </Menu.Item>
         <Menu.Item key="6">
-          {user?.role == "Student" && (
+          {user?.role == "ROLE_STUDENT" && (
             <NavLink to="/profile">
               <span
                 className="icon"
@@ -242,7 +242,7 @@ function Sidenav({ color, user }) {
               <span className="label">Profile</span>
             </NavLink>
           )}
-          {user?.role == "Lecturer" && (
+          {user?.role == "ROLE_LECTURER" && (
             <NavLink to="/profile-lecturer">
               <span
                 className="icon"

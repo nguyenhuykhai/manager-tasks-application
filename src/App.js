@@ -65,7 +65,7 @@ function App({ user, dispatch }) {
             component={HomeLecturer}
             isAuthenticated={user?.isAuthenticated}
             userRole={user?.role}
-            allowedRoles={['Admin', 'Lecturer']}
+            allowedRoles={['ROLE_ADMIN', 'ROLE_LECTURER']}
             redirectTo="/sign-in"
           />
           <PrivateRoute
@@ -74,7 +74,7 @@ function App({ user, dispatch }) {
             component={HomeStudent}
             isAuthenticated={user?.isAuthenticated}
             userRole={user?.role}
-            allowedRoles={['Student']}
+            allowedRoles={['ROLE_STUDENT']}
             redirectTo="/sign-in"
           />
           <PrivateRoute
@@ -83,7 +83,7 @@ function App({ user, dispatch }) {
             component={Tables}
             isAuthenticated={user?.isAuthenticated}
             userRole={user?.role}
-            allowedRoles={['Admin', 'Lecturer', 'Student']}
+            allowedRoles={['ROLE_ADMIN', 'ROLE_LECTURER', 'ROLE_STUDENT']}
             redirectTo="/sign-in"
           />
           <PrivateRoute
@@ -92,7 +92,7 @@ function App({ user, dispatch }) {
             component={Billing}
             isAuthenticated={user?.isAuthenticated}
             userRole={user?.role}
-            allowedRoles={['Admin', 'Lecturer', 'Student']}
+            allowedRoles={['ROLE_ADMIN', 'ROLE_LECTURER', 'ROLE_STUDENT']}
             redirectTo="/sign-in"
           />
           <PrivateRoute
@@ -101,7 +101,7 @@ function App({ user, dispatch }) {
             component={Rtl}
             isAuthenticated={user?.isAuthenticated}
             userRole={user?.role}
-            allowedRoles={['Admin', 'Lecturer', 'Student']}
+            allowedRoles={['ROLE_ADMIN', 'ROLE_LECTURER', 'ROLE_STUDENT']}
             redirectTo="/sign-in"
           />
           <PrivateRoute
@@ -110,7 +110,7 @@ function App({ user, dispatch }) {
             component={ProfileStudent}
             isAuthenticated={user?.isAuthenticated}
             userRole={user?.role}
-            allowedRoles={['Student']}
+            allowedRoles={['ROLE_STUDENT']}
             redirectTo="/sign-in"
           />
           <PrivateRoute
@@ -119,7 +119,7 @@ function App({ user, dispatch }) {
             component={ProfileLecturer}
             isAuthenticated={user?.isAuthenticated}
             userRole={user?.role}
-            allowedRoles={['Lecturer']}
+            allowedRoles={['ROLE_LECTURER']}
             redirectTo="/sign-in"
           />
         </Main>
