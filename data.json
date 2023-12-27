@@ -16,7 +16,7 @@
             "id": "101",
             "pending": "",
             "password": "12345",
-            "role": "Student",
+            "role": "ROLE_STUDENT",
             "token": "1234567890"
         },
         {
@@ -35,7 +35,7 @@
             "id": "102",
             "pending": "",
             "password": "12345",
-            "role": "Student",
+            "role": "ROLE_STUDENT",
             "token": "1234567890"
         },
         {
@@ -54,7 +54,7 @@
             "id": "103",
             "pending": "",
             "password": "12345",
-            "role": "Student",
+            "role": "ROLE_STUDENT",
             "token": "1234567890"
         },
         {
@@ -73,7 +73,7 @@
             "id": "104",
             "pending": "",
             "password": "12345",
-            "role": "Student",
+            "role": "ROLE_STUDENT",
             "token": "1234567890"
         },
         {
@@ -92,7 +92,7 @@
             "id": "105",
             "pending": "",
             "password": "12345",
-            "role": "Student",
+            "role": "ROLE_STUDENT",
             "token": "1234567890"
         },
         {
@@ -111,7 +111,7 @@
             "id": "106",
             "pending": "",
             "password": "12345",
-            "role": "Student",
+            "role": "ROLE_STUDENT",
             "token": "1234567890"
         },
         {
@@ -130,7 +130,7 @@
             "id": "107",
             "pending": "",
             "password": "12345",
-            "role": "Student",
+            "role": "ROLE_STUDENT",
             "token": "1234567890"
         },
         {
@@ -149,7 +149,7 @@
             "id": "108",
             "pending": "",
             "password": "12345",
-            "role": "Student",
+            "role": "ROLE_STUDENT",
             "token": "1234567890"
         },
         {
@@ -168,7 +168,7 @@
             "id": "109",
             "pending": "",
             "password": "12345",
-            "role": "Student",
+            "role": "ROLE_STUDENT",
             "token": "1234567890"
         },
         {
@@ -187,7 +187,7 @@
             "id": "110",
             "pending": "",
             "password": "12345",
-            "role": "Student",
+            "role": "ROLE_STUDENT",
             "token": "1234567890"
         },
         {
@@ -206,7 +206,7 @@
             "id": "111",
             "pending": "",
             "password": "12345",
-            "role": "Student",
+            "role": "ROLE_STUDENT",
             "token": "1234567890"
         },
         {
@@ -225,7 +225,7 @@
             "id": "106",
             "pending": "",
             "password": "12345",
-            "role": "Student",
+            "role": "ROLE_STUDENT",
             "token": "1234567890"
         }
     ],
@@ -237,7 +237,7 @@
             "name": "Nguyễn Thế Hoàng",
             "id": "104",
             "token": "1234567890",
-            "role": "Lecturer"
+            "role": "ROLE_LECTURER"
         },
         {
             "status": true,
@@ -246,7 +246,7 @@
             "name": "Nguyễn Văn A",
             "id": "105",
             "token": "1234567890",
-            "role": "Lecturer"
+            "role": "ROLE_LECTURER"
         },
         {
             "status": true,
@@ -255,7 +255,7 @@
             "name": "Huỳnh Văn B",
             "id": "106",
             "token": "1234567890",
-            "role": "Lecturer"
+            "role": "ROLE_LECTURER"
         }
     ],
     "class": [
@@ -450,7 +450,7 @@
                     "id": "101",
                     "pending": "",
                     "password": "12345",
-                    "role": "Student",
+                    "role": "ROLE_STUDENT",
                     "token": "1234567890"
                 },
                 {
@@ -469,7 +469,7 @@
                     "id": "102",
                     "pending": "",
                     "password": "12345",
-                    "role": "Student",
+                    "role": "ROLE_STUDENT",
                     "token": "1234567890"
                 },
                 {
@@ -488,7 +488,7 @@
                     "id": "103",
                     "pending": "",
                     "password": "12345",
-                    "role": "Student",
+                    "role": "ROLE_STUDENT",
                     "token": "1234567890"
                 },
                 {
@@ -507,7 +507,7 @@
                     "id": "104",
                     "pending": "",
                     "password": "12345",
-                    "role": "Student",
+                    "role": "ROLE_STUDENT",
                     "token": "1234567890"
                 },
                 {
@@ -526,7 +526,7 @@
                     "id": "105",
                     "pending": "",
                     "password": "12345",
-                    "role": "Student",
+                    "role": "ROLE_STUDENT",
                     "token": "1234567890"
                 },
                 {
@@ -545,7 +545,7 @@
                     "id": "106",
                     "pending": "",
                     "password": "12345",
-                    "role": "Student",
+                    "role": "ROLE_STUDENT",
                     "token": "1234567890"
                 }
             ]
@@ -588,7 +588,7 @@
                     "id": "107",
                     "pending": "",
                     "password": "12345",
-                    "role": "Student",
+                    "role": "ROLE_STUDENT",
                     "token": "1234567890"
                 },
                 {
@@ -607,7 +607,7 @@
                     "id": "108",
                     "pending": "",
                     "password": "12345",
-                    "role": "Student",
+                    "role": "ROLE_STUDENT",
                     "token": "1234567890"
                 },
                 {
@@ -626,7 +626,7 @@
                     "id": "109",
                     "pending": "",
                     "password": "12345",
-                    "role": "Student",
+                    "role": "ROLE_STUDENT",
                     "token": "1234567890"
                 },
                 {
@@ -645,7 +645,7 @@
                     "id": "110",
                     "pending": "",
                     "password": "12345",
-                    "role": "Student",
+                    "role": "ROLE_STUDENT",
                     "token": "1234567890"
                 },
                 {
@@ -664,7 +664,7 @@
                     "id": "111",
                     "pending": "",
                     "password": "12345",
-                    "role": "Student",
+                    "role": "ROLE_STUDENT",
                     "token": "1234567890"
                 },
                 {
@@ -683,7 +683,7 @@
                     "id": "106",
                     "pending": "",
                     "password": "12345",
-                    "role": "Student",
+                    "role": "ROLE_STUDENT",
                     "token": "1234567890"
                 }
             ]

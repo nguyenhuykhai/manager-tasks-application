@@ -1,6 +1,5 @@
+export const API_BASE_BACKEND_URL = 'http://localhost:8080/';
 export const API_BASE_URL = 'http://localhost:9999/';
-export const POSTS_ENDPOINT = '/posts';
-export const AUTH_ENDPOINT = '/auth';
 
 
 // API FOR TABLE STUDENT 
@@ -31,6 +30,8 @@ export function GET_STUDENT_BY_EMAIl(email) {
     },
   };
 }
+
+export const GET_STUDENT_BY_EMAIl_API = `${API_BASE_BACKEND_URL}api/v1/authenticate/login`
 
 export function GET_LECTURER_BY_EMAIl(email) {
   return {

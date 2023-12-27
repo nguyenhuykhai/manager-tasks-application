@@ -1,9 +1,10 @@
 
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import axios from 'axios';
 
 // Import variables API
-import { GET_STUDENT_BY_EMAIl, GET_LECTURER_BY_EMAIl } from "../assets/api";
+import { GET_STUDENT_BY_EMAIl_API, GET_STUDENT_BY_EMAIl, GET_LECTURER_BY_EMAIl } from "../assets/api";
 
 // Import custome hooks
 import { useAlert } from "../hooks/useAlert";
@@ -11,36 +12,45 @@ import { useAlert } from "../hooks/useAlert";
 export const useLogin = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(null);
-    const history = useHistory()
 
-    //   const login = async (email, password) => {
-    //     setIsLoading(true);
-    //     setError(null);
-
-    //     const response = await fetch('Nhập API login', {
-    //         method: 'POST',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify({email, password})
-    //     })
-    //     const json = await response.json()
-
-    //     if (!response.ok) {
-    //         setIsLoading(false)
-    //         setError(json.error)
-    //     }
-    //     if (response.ok) {
-
-    //         handleLogin(response)
-    //         // save the user to local storage
-    //         localStorage.setItem('user', JSON.stringify(json))
-
-    //         // update the auth context
-    //         dispatch({type: 'LOGIN_SUCCESS', payload: json})
-
-    //         setIsLoading(false)
-    //     }
-    //   };
-    //   return { login, isLoading, error };
+    const loginSendAPI = async (email, password) => {
+        setIsLoading(true);
+        setError(null);
+    
+        try {
+            const response = await axios.post(GET_STUDENT_BY_EMAIl_API, {
+                email,
+                password
+            }, {
+                withCredentials: true
+            });            
+    
+            const json = response.data;
+    
+            if (!response.status === "Successful") {
+                setIsLoading(false);
+                setError(json.error);
+                return null;
+            }
+    
+            console.log("DATA: ", json);
+            const { isAuthen, role } = handleLoginAPI(json);
+            if (isAuthen) {
+                let user = {...json, role: role, isAuthenticated: true};
+                return user;
+            } else {
+                setError("Account invalid");
+                console.log("Account invalid");
+            }
+            setIsLoading(false);
+            return null;
+        } catch (error) {
+            setIsLoading(false);
+            setError("An error occurred while processing the request.");
+            console.error("Error:", error);
+            return null;
+        }
+    };
 
     const login = async (email, password) => {
         setIsLoading(true);
@@ -52,15 +62,14 @@ export const useLogin = () => {
                 const response = await fetch(url, options);
                 const json = await response.json();
 
-                const isAuthenticated = handleLogin(json[0]);
+                const { isAuthen, role } = handleLogin(json[0]);
 
-                if (isAuthenticated) {
+                if (isAuthen) {
                     let user = {...json[0], isAuthenticated: true};
                     return user;
                 } else {
                     return await fakeLogin2()
                 }
-                setIsLoading(false);
             } catch (error) {
                 return await fakeLogin2()
             }
@@ -73,9 +82,9 @@ export const useLogin = () => {
                 const response = await fetch(url, options);
                 const json = await response.json();
 
-                const isAuthenticated = handleLogin(json[0]);
+                const { isAuthen, role } = handleLogin(json[0]);
 
-                if (isAuthenticated) {
+                if (isAuthen) {
                     let user = {...json[0], isAuthenticated: true};
                     setIsLoading(false);
                     return user;
@@ -95,7 +104,7 @@ export const useLogin = () => {
 
         return await fakeLogin();
     };
-    return { login, isLoading, error };
+    return { loginSendAPI, login, isLoading, error };
 };
 
 export const useLogout = () => {
@@ -108,7 +117,6 @@ export const useLogout = () => {
         localStorage.removeItem('name');
         localStorage.removeItem('is_leader');
         localStorage.removeItem('isAuthenticated');
-        localStorage.removeItem('isAuthenticated');
         localStorage.removeItem('password');
     }
     return { logout }
@@ -117,11 +125,12 @@ export const useLogout = () => {
 // Function handle login and storage data in LocalStorage
 const handleLogin = (data) => {
     // Simulate the login process and store user data in the context
-    if (data?.role !== "Lecturer" && data?.role !== "Student" && data?.role !== "Admin") {
-        return false;
+    if (data?.role !== "ROLE_LECTURER" && data?.role !== "ROLE_STUDENT" && data?.role !== "ROLE_ADMIN") {
+        return { isAuthen: false};
     }
+
     switch (data?.role) {
-        case "Lecturer":
+        case "ROLE_LECTURER":
             // Store the token in localStorage
             localStorage.setItem("id", data?.id);
             localStorage.setItem("token", data?.token);
@@ -131,7 +140,7 @@ const handleLogin = (data) => {
             localStorage.setItem("isAuthenticated", true);
             localStorage.setItem("password", data?.password);
             break;
-        case "Student":
+        case "ROLE_STUDENT":
             // Store the token in localStorage
             localStorage.setItem("id", data?.id);
             localStorage.setItem("token", data?.token);
@@ -142,10 +151,54 @@ const handleLogin = (data) => {
             localStorage.setItem("isAuthenticated", true);
             localStorage.setItem("password", data?.password);
             break;
-        case "Admin":
+        case "ROLE_ADMIN":
             break;
         default:
             break;
     }
-    return true;
+    return { isAuthen: true, role: data?.role };
+};
+
+const handleLoginAPI = (data) => {
+    let userRole;
+    // Simulate the login process and store user data in the context
+    if (data?.payload?.authorities) {
+        const length = data?.payload?.authorities.length;
+        userRole = data?.payload?.authorities[length - 1]?.authority;
+    }
+
+    if (userRole !== "ROLE_LECTURER" && userRole !== "ROLE_STUDENT" && userRole !== "ROLE_ADMIN") {
+        return { isAuthen: false};
+    }
+    
+    let token;
+    switch (userRole) {
+        case "ROLE_LECTURER":
+            // Store the token in localStorage
+            token = data?.message.match(/Jwt token: (\S+)/);
+            localStorage.setItem("id", data?.id);
+            localStorage.setItem("token", data?.token);
+            localStorage.setItem("role", userRole);
+            localStorage.setItem("email", data?.email);
+            localStorage.setItem("name", data?.name);
+            localStorage.setItem("isAuthenticated", true);
+            break;
+        case "ROLE_STUDENT":
+            // Store the token in localStorage
+            token = data?.message.match(/Jwt token: (\S+)/);
+            localStorage.setItem("id", data?.payload?.principal?.student_id);
+            localStorage.setItem("token", token);
+            localStorage.setItem("role", userRole);
+            localStorage.setItem("email", data?.payload?.principal?.email);
+            localStorage.setItem("name", data?.payload?.principal?.student_name);
+            localStorage.setItem("is_leader", data?.payload?.principal?._leader);
+            localStorage.setItem("isAuthenticated", true);
+            break;
+        case "ROLE_ADMIN":
+            token = data?.message.match(/Jwt token: (\S+)/);
+            break;
+        default:
+            break;
+    }
+    return { isAuthen: true, role: userRole };
 };

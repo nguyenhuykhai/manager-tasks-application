@@ -126,11 +126,11 @@ function SignUp({ user, dispatch }) {
           <div className="header-col header-nav">
             <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
               <Menu.Item key="1">
-                {user?.role == "Student" && (<Link to="/dashboard-student">
+                {user?.role == "ROLE_STUDENT" && (<Link to="/dashboard-student">
                   {template}
                   <span> Dashboard</span>
                 </Link>)}
-                {user?.role == "Lecturer" && (<Link to="/dashboard-lecturer">
+                {user?.role == "ROLE_LECTURER" && (<Link to="/dashboard-lecturer">
                   {template}
                   <span> Dashboard</span>
                 </Link>)}
