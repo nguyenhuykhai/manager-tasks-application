@@ -138,6 +138,7 @@ Hỗ Trợ Đa Trình Duyệt: Đảm bảo hoạt động trơn tru trên các 
 |   |   |   |-- LineChart.js
 |   |   |-- component/
 |   |   |   |-- Menu.js
+|   |   |   |-- UpdateProfile.js
 |   |   |-- layout/
 |   |   |   |-- Footer.js
 |   |   |   |-- Header.js
@@ -148,14 +149,19 @@ Hỗ Trợ Đa Trình Duyệt: Đảm bảo hoạt động trơn tru trên các 
 |   |-- context/
 |   |   |-- AlertContext.js
 |   |
+|   |-- firebase/
+|   |   |-- firebase.js
+|   |
 |   |-- hooks/
 |   |   |-- useAlert.js
 |   |
 |   |-- pages/
 |   |   |-- Lecturer/
 |   |   |   |-- ProfileLecturer.js
+|   |   |   |-- HomeLecturer.js
 |   |   |-- Student/
 |   |   |   |-- ProfileStudent.js
+|   |   |   |-- HomeStudent.js
 |   |   |-- Billing.js
 |   |   |-- Home.js
 |   |   |-- Rtl.js
