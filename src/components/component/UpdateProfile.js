@@ -342,53 +342,16 @@ function UpdateProfile({ user, dispatch }) {
             </Form.Item>
             <Form.Item>
               <Space>
-                <Button type="primary" htmlType="submit">Submit</Button>
+                <Button type="primary" htmlType="submit">Cập nhật</Button>
                 <Button htmlType="button" onClick={onReset}>
-                  Reset
+                  Đặt lại
                 </Button>
                 <Button htmlType="button" onClick={onClear}>
-                  Clear
+                  Xóa
                 </Button>
               </Space>
             </Form.Item>
           </Form>
-
-          <div className="sidebar-color">
-            <Title level={5}>Đổi màu giao diện thanh điều hướng</Title>
-            <div className="theme-color mb-2">
-              <ButtonContainer>
-                <Button type="primary">1</Button>
-                <Button type="success">1</Button>
-                <Button type="danger">1</Button>
-                <Button type="yellow">1</Button>
-                <Button type="black">1</Button>
-              </ButtonContainer>
-            </div>
-
-            <div className="sidebarnav-color mb-2">
-              <Title level={5}>Đổ bóng thanh điều hướng</Title>
-              <Text>Chọn loại đổ bóng</Text>
-              <ButtonContainer className="trans">
-                <Button type="transparent">
-                  TRONG SUỐT
-                </Button>
-                <Button type="white">
-                  TRẮNG
-                </Button>
-              </ButtonContainer>
-            </div>
-            <div className="fixed-nav mb-2">
-              <Title level={5}>Thanh điều hướng bất biến</Title>
-              <Switch />
-            </div>
-            <div className="ant-docment">
-              <ButtonContainer>
-                <Button type="primary" size="medium">
-                  Đăng xuất
-                </Button>
-              </ButtonContainer>
-            </div>
-          </div>
         </div>
       </Drawer>
     </>
