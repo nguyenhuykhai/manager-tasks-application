@@ -31,8 +31,6 @@ export function GET_STUDENT_BY_EMAIl(email) {
   };
 }
 
-export const GET_STUDENT_BY_EMAIl_API = `${API_BASE_BACKEND_URL}api/v1/authenticate/login`
-
 export function GET_LECTURER_BY_EMAIl(email) {
   return {
     url: `${API_BASE_URL}lecturers?email=${email}`,
@@ -52,6 +50,22 @@ export function GET_GROUP_INFO_BY_ID(group_id, class_id) {
     },
   };
 }
+
+export const API_GET_STUDENT_BY_EMAIl = `${API_BASE_BACKEND_URL}api/v1/authenticate/login`
+
+export function API_GET_GROUP_INFO_BY_ID(group_id, class_id, token) {
+  return {
+    url: `${API_BASE_BACKEND_URL}api/v1/group/details?groupId=${group_id}&classId=${class_id}`,
+    options: {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    },
+  };
+}
+
 
 // export function DELETE_SLOT(id) {
 //   return {

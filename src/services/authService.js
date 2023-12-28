@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from 'axios';
 
 // Import variables API
-import { GET_STUDENT_BY_EMAIl_API, GET_STUDENT_BY_EMAIl, GET_LECTURER_BY_EMAIl } from "../assets/api";
+import { API_GET_STUDENT_BY_EMAIl, GET_STUDENT_BY_EMAIl, GET_LECTURER_BY_EMAIl } from "../assets/api";
 
 // Import custome hooks
 import { useAlert } from "../hooks/useAlert";
@@ -18,7 +18,7 @@ export const useLogin = () => {
         setError(null);
     
         try {
-            const response = await axios.post(GET_STUDENT_BY_EMAIl_API, {
+            const response = await axios.post(API_GET_STUDENT_BY_EMAIl, {
                 email,
                 password
             }, {
@@ -33,10 +33,9 @@ export const useLogin = () => {
                 return null;
             }
     
-            console.log("DATA: ", json);
-            const { isAuthen, role } = handleLoginAPI(json);
+            const { isAuthen, role, token } = handleLoginAPI(json);
             if (isAuthen) {
-                let user = {...json, role: role, isAuthenticated: true};
+                let user = {...json, token: token, role: role, isAuthenticated: true};
                 return user;
             } else {
                 setError("Account invalid");
@@ -62,7 +61,7 @@ export const useLogin = () => {
                 const response = await fetch(url, options);
                 const json = await response.json();
 
-                const { isAuthen, role } = handleLogin(json[0]);
+                const { isAuthen, role, token } = handleLogin(json[0]);
 
                 if (isAuthen) {
                     let user = {...json[0], isAuthenticated: true};
@@ -82,7 +81,7 @@ export const useLogin = () => {
                 const response = await fetch(url, options);
                 const json = await response.json();
 
-                const { isAuthen, role } = handleLogin(json[0]);
+                const { isAuthen, role, token } = handleLogin(json[0]);
 
                 if (isAuthen) {
                     let user = {...json[0], isAuthenticated: true};
@@ -156,7 +155,7 @@ const handleLogin = (data) => {
         default:
             break;
     }
-    return { isAuthen: true, role: data?.role };
+    return { isAuthen: true, role: data?.role, token: data?.token };
 };
 
 const handleLoginAPI = (data) => {
@@ -171,13 +170,12 @@ const handleLoginAPI = (data) => {
         return { isAuthen: false};
     }
     
-    let token;
+    const token = data?.message.match(/Jwt token: (\S+)/);
     switch (userRole) {
         case "ROLE_LECTURER":
             // Store the token in localStorage
-            token = data?.message.match(/Jwt token: (\S+)/);
             localStorage.setItem("id", data?.id);
-            localStorage.setItem("token", data?.token);
+            localStorage.setItem("token", token[1]);
             localStorage.setItem("role", userRole);
             localStorage.setItem("email", data?.email);
             localStorage.setItem("name", data?.name);
@@ -185,9 +183,8 @@ const handleLoginAPI = (data) => {
             break;
         case "ROLE_STUDENT":
             // Store the token in localStorage
-            token = data?.message.match(/Jwt token: (\S+)/);
             localStorage.setItem("id", data?.payload?.principal?.student_id);
-            localStorage.setItem("token", token);
+            localStorage.setItem("token", token[1]);
             localStorage.setItem("role", userRole);
             localStorage.setItem("email", data?.payload?.principal?.email);
             localStorage.setItem("name", data?.payload?.principal?.student_name);
@@ -195,10 +192,9 @@ const handleLoginAPI = (data) => {
             localStorage.setItem("isAuthenticated", true);
             break;
         case "ROLE_ADMIN":
-            token = data?.message.match(/Jwt token: (\S+)/);
             break;
         default:
             break;
     }
-    return { isAuthen: true, role: userRole };
+    return { isAuthen: true, role: userRole, token: token[1] };
 };

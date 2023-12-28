@@ -1,13 +1,13 @@
 // src/services/groupService.js
 
-import { GET_GROUP_INFO_BY_ID } from '../assets/api';
+import { API_GET_GROUP_INFO_BY_ID } from '../assets/api';
 import { useAlert } from '../hooks/useAlert';
 
 const useGroupService = () => {
   const { showAlert } = useAlert();
 
   const fetchGroupDetailInfo = async (user) => {
-    const { url, options } = GET_GROUP_INFO_BY_ID(user?.class_id, user?.group_id);
+    const { url, options } = API_GET_GROUP_INFO_BY_ID(user?.student?.classID?.class_id, user?.student?.groupID?.group_id, user?.token);
     const response = await fetch(url, options);
 
     if (response.ok) {
