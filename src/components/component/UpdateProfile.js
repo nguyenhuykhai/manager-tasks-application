@@ -109,7 +109,7 @@ function UpdateProfile({ user, dispatch }) {
   // Handle validate form
   const [form] = Form.useForm();
 
-  form.setFieldsValue(user);
+  form.setFieldsValue(user?.student);
 
   const onFinish = async () => {
     try {
@@ -139,7 +139,7 @@ function UpdateProfile({ user, dispatch }) {
   };
 
   const onReset = () => {
-    form.setFieldsValue(user);
+    form.setFieldsValue(user?.student);
   };
   const onClear = () => {
     form.resetFields();
@@ -220,13 +220,13 @@ function UpdateProfile({ user, dispatch }) {
             <Row>
               <Col span={4}>
                 <div>
-                  <img src={user?.picture} alt="" className="border10" />
+                  <img src={user?.student?.picture} alt="" className="border10" />
                 </div>
               </Col>
               <Col span={20}>
                 <Title level={4} style={{ paddingLeft: '8px' }}>
-                  {user?.name || user?.student_name}
-                  <Text className="subtitle">{user?.email}</Text>
+                  {user?.student?.name || user?.student?.student_name}
+                  <Text className="subtitle">{user?.student?.email}</Text>
                 </Title>
               </Col>
             </Row>

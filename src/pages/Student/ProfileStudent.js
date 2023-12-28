@@ -39,8 +39,6 @@ import profilavatar from "../../assets/images/face-1.jpg";
 import convesionImg from "../../assets/images/face-3.jpg";
 import convesionImg2 from "../../assets/images/face-4.jpg";
 import convesionImg3 from "../../assets/images/face-5.jpeg";
-import convesionImg4 from "../../assets/images/face-6.jpeg";
-import convesionImg5 from "../../assets/images/face-2.jpg";
 import project1 from "../../assets/images/home-decor-1.jpeg";
 import project2 from "../../assets/images/home-decor-2.jpeg";
 import project3 from "../../assets/images/home-decor-3.jpeg";
@@ -81,60 +79,12 @@ function ProfileStudent({ user, groups, selectedGroup, dispatch }) {
     }
   };
 
-  const pencil = [
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      key={0}
-    >
-      <path
-        d="M13.5858 3.58579C14.3668 2.80474 15.6332 2.80474 16.4142 3.58579C17.1953 4.36683 17.1953 5.63316 16.4142 6.41421L15.6213 7.20711L12.7929 4.37868L13.5858 3.58579Z"
-        className="fill-gray-7"
-      ></path>
-      <path
-        d="M11.3787 5.79289L3 14.1716V17H5.82842L14.2071 8.62132L11.3787 5.79289Z"
-        className="fill-gray-7"
-      ></path>
-    </svg>,
-  ];
-
   const uploadButton = (
     <div className="ant-upload-text font-semibold text-dark">
       {<VerticalAlignTopOutlined style={{ width: 20, color: "#000" }} />}
       <div>Thêm công việc mới</div>
     </div>
   );
-
-  const data = [
-    {
-      title: "Sophie B.",
-      avatar: convesionImg,
-      description: "Hi! I need more information…",
-    },
-    {
-      title: "Anne Marie",
-      avatar: convesionImg2,
-      description: "Awesome work, can you…",
-    },
-    {
-      title: "Ivan",
-      avatar: convesionImg3,
-      description: "About files I can…",
-    },
-    {
-      title: "Peterson",
-      avatar: convesionImg4,
-      description: "Have a great afternoon…",
-    },
-    {
-      title: "Nick Daniel",
-      avatar: convesionImg5,
-      description: "Hi! I need more information…",
-    },
-  ];
 
   const project = [
     {
@@ -164,15 +114,13 @@ function ProfileStudent({ user, groups, selectedGroup, dispatch }) {
 
   // Interactive with API
   useEffect(async () => {
-    if (user != null) {
+    if (user != null && selectedGroup == null) {
       const data = await fetchGroupDetailInfo(user);
       if (data != null) {
-        dispatch(fetchGroupDetailSuccess(data[0]));
+        dispatch(fetchGroupDetailSuccess(data));
       }
     }
   }, [user])
-
-  console.log(selectedGroup);
 
   if (user == null) return <div>Loading...</div>
 
@@ -190,11 +138,11 @@ function ProfileStudent({ user, groups, selectedGroup, dispatch }) {
           <Row justify="space-between" align="middle" gutter={[24, 0]}>
             <Col span={24} md={12} className="col-info">
               <Avatar.Group>
-                <Avatar size={74} shape="square" src={user?.picture} />
+                <Avatar size={74} shape="square" src={user?.student?.picture} />
 
                 <div className="avatar-info">
-                  <h4 className="font-semibold m-0">{user?.student_name}</h4>
-                  <p>{user?.about}</p>
+                  <h4 className="font-semibold m-0">{user?.student?.student_name}</h4>
+                  <p>{user?.student?.about}</p>
                 </div>
               </Avatar.Group>
             </Col>
@@ -271,24 +219,24 @@ function ProfileStudent({ user, groups, selectedGroup, dispatch }) {
           >
             <p className="text-dark">
               {" "}
-              {user?.skills}{" "}
+              {user?.student?.skills}{" "}
             </p>
             <hr className="my-25" />
             <Descriptions title="Chi tiết">
               <Descriptions.Item label="Full Name" span={3}>
-              {user?.student_name}
+              {user?.student?.student_name}
               </Descriptions.Item>
               <Descriptions.Item label="GitHub" span={3}>
-              {user?.github}
+              {user?.student?.github}
               </Descriptions.Item>
               <Descriptions.Item label="Email" span={3}>
-              {user?.email}
+              {user?.student?.email}
               </Descriptions.Item>
               <Descriptions.Item label="Social" span={3}>
                 <a href="#pablo" className="mx-5 px-5">
                   {<TwitterOutlined />}
                 </a>
-                <a href={user?.link_facebook} className="mx-5 px-5">
+                <a href={user?.student?.link_facebook} className="mx-5 px-5">
                   {<FacebookOutlined style={{ color: "#344e86" }} />}
                 </a>
                 <a href="#pablo" className="mx-5 px-5">
@@ -307,7 +255,7 @@ function ProfileStudent({ user, groups, selectedGroup, dispatch }) {
           >
             <List
               itemLayout="horizontal"
-              dataSource={selectedGroup?.members}
+              dataSource={selectedGroup?.payload?.groupStudents}
               split={false}
               className="conversations-list"
               renderItem={(item) => (
@@ -316,7 +264,7 @@ function ProfileStudent({ user, groups, selectedGroup, dispatch }) {
                     avatar={
                       <Avatar shape="square" size={48} src={item.picture} />
                     }
-                    title={item?.student_name}
+                    title={item?.name}
                     description={item?.email}
                   />
                 </List.Item>
@@ -331,7 +279,7 @@ function ProfileStudent({ user, groups, selectedGroup, dispatch }) {
         title={
           <>
             <h6 className="font-semibold">Quản lý công việc</h6>
-            <p>Dự án - {selectedGroup?.context}</p>
+            <p>Dự án - {selectedGroup?.projectID?.context}</p>
           </>
         }
       >
