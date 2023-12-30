@@ -204,7 +204,7 @@ Hỗ Trợ Đa Trình Duyệt: Đảm bảo hoạt động trơn tru trên các 
 
 ## Tài liệu | Documentation
 
- [Desing Figma](#).
+ [Design Figma](#).
 
  [Function Requirement](https://docs.google.com/document/d/1CPjPpIMVkAp9KRoCvXRMUoL48Fq_O6yInnZExIvpzVI/edit?fbclid=IwAR32KoldKVxeqRD4jj6fraiftt8D1twY8l4e1sg16PIT_dbG97FOcaQiVsI).
  
