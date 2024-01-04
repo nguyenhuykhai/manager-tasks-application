@@ -66,6 +66,8 @@ export function API_GET_GROUP_INFO_BY_ID(group_id, class_id, token) {
   };
 }
 
+export const API_UPDATE_STUDENT_INFO_BY_ID = `${API_BASE_BACKEND_URL}api/v1/student/updatelink`
+
 
 // export function DELETE_SLOT(id) {
 //   return {
