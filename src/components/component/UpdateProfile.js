@@ -7,6 +7,9 @@ import { imageDb } from '../../firebase/firebase';
 import { getDownloadURL, listAll, ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 
+// Import Custome Function
+import { useAccountService } from "../../services/accountService"
+
 // Import Ant Design
 import {
   Row,
@@ -100,6 +103,7 @@ const getBase64 = (file) =>
 function UpdateProfile({ user, dispatch }) {
   const { Title, Text } = Typography;
   const [visible, setVisible] = useState(false);
+  const { updateStudentInfo } = useAccountService();
 
   useEffect(() => window.scrollTo(0, 0));
 
@@ -115,23 +119,24 @@ function UpdateProfile({ user, dispatch }) {
     try {
       // Validate the form before submitting
       await form.validateFields();
-
-      // Submit other form values to the server
-      const values = await form.getFieldsValue();
-      console.log('Form values:', values);
-
       // Handle image upload
       if (fileList.length > 0) {
         const file = fileList[0];
         const storageRef = ref(imageDb, `images/${uuidv4()}_${file.name}`);
-        
         await uploadBytes(storageRef, file.originFileObj);
 
         // Get download URL after successful upload
         const imageUrl = await getDownloadURL(storageRef);
 
         // Continue with any additional logic or save the imageUrl as needed
-        console.log('Download URL:', imageUrl);
+        if (imageUrl != null) {
+          form.setFieldsValue({ ...form, picture: imageUrl });
+          // Logic call API update user profile
+          const responseData = await updateStudentInfo(await form.getFieldsValue())
+        }
+      } else {
+          // Logic call API update user profile
+        const responseData = await updateStudentInfo(await form.getFieldsValue())
       }
     } catch (error) {
       console.error('Form validation error:', error);
